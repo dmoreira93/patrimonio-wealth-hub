@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-app: #080c14;
+    --bg-panel: #0f1623;
+    --bg-elevated: #162032;
+    --border-subtle: rgba(148, 163, 184, 0.14);
+    --text-primary: #f1f5f9;
+    --text-muted: #94a3b8;
+    --gold: #d4af37;
+    --emerald: #10b981;
+    --rose: #f43f5e;
+    --sky: #38bdf8;
+  }
+
+  html.light {
+    --bg-app: #faf8f5;
+    --bg-panel: #ffffff;
+    --bg-elevated: #f3EFEA;
+    --border-subtle: rgba(15, 23, 42, 0.12);
+    --text-primary: #0f172a;
+    --text-muted: #64748b;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.22);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.45);
+}
