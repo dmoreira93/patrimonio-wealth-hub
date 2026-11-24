@@ -120,7 +120,7 @@ export function SettingsVaultView() {
         >
           <div className="space-y-4">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 URL do Web App (Google Apps Script `/exec`)
               </label>
               <input
@@ -128,12 +128,12 @@ export function SettingsVaultView() {
                 placeholder="https://script.google.com/macros/s/.../exec"
                 value={state.settings.b3SheetApiUrl}
                 onChange={(e) => updateSettings({ b3SheetApiUrl: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900"
               />
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Link Direto da sua Planilha Google (para botão de atalho)
               </label>
               <input
@@ -141,7 +141,7 @@ export function SettingsVaultView() {
                 placeholder="https://docs.google.com/spreadsheets/d/..."
                 value={state.settings.googleSpreadsheetUrl}
                 onChange={(e) => updateSettings({ googleSpreadsheetUrl: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900"
               />
             </div>
 
@@ -149,7 +149,7 @@ export function SettingsVaultView() {
               <button
                 onClick={syncWithGoogleSheet}
                 disabled={isSyncingSheet}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800"
               >
                 <RefreshCw className={`size-3.5 ${isSyncingSheet ? "animate-spin" : ""}`} />
                 Buscar Cotações da Planilha
@@ -157,23 +157,23 @@ export function SettingsVaultView() {
               <button
                 onClick={pushAllTickersToGoogleSheet}
                 disabled={isSyncingSheet}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-950 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-slate-800"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100"
               >
                 <FileSpreadsheet className="size-3.5" />
                 Enviar Ativos p/ Planilha
               </button>
               <button
                 onClick={() => setShowScriptCode(!showScriptCode)}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-amber-500/40 bg-amber-500/10 px-3.5 py-2 text-xs font-medium text-amber-300"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-slate-100 px-3.5 py-2 text-xs font-medium text-slate-700"
               >
                 {showScriptCode ? "Ocultar Código Apps Script" : "Ver Código Apps Script Pronto"}
               </button>
             </div>
 
             {showScriptCode && (
-              <div className="rounded-xl border border-slate-800 bg-slate-950 p-3">
+              <div className="rounded-xl border border-slate-200 bg-white p-3">
                 <div className="mb-2 flex items-center justify-between">
-                  <span className="text-xs font-semibold text-amber-400">
+                  <span className="text-xs font-semibold text-slate-800">
                     Código Google Apps Script (doGet + doPost com GOOGLEFINANCE)
                   </span>
                   <button
@@ -181,12 +181,12 @@ export function SettingsVaultView() {
                       navigator.clipboard.writeText(GOOGLE_APPS_SCRIPT_TEMPLATE);
                       toast.success("Código Apps Script copiado para a área de transferência!");
                     }}
-                    className="inline-flex items-center gap-1 rounded-lg bg-slate-800 px-2.5 py-1 text-xs text-slate-200 hover:bg-slate-700"
+                    className="inline-flex items-center gap-1 rounded-lg bg-slate-100 px-2.5 py-1 text-xs text-slate-800 hover:bg-slate-200"
                   >
                     <Copy className="size-3" /> Copiar
                   </button>
                 </div>
-                <pre className="max-h-56 overflow-auto font-mono text-[11px] text-slate-300">
+                <pre className="max-h-56 overflow-auto font-mono text-[11px] text-slate-700">
                   {GOOGLE_APPS_SCRIPT_TEMPLATE}
                 </pre>
               </div>
@@ -201,7 +201,7 @@ export function SettingsVaultView() {
         >
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Ano de Referência
               </label>
               <input
@@ -210,11 +210,11 @@ export function SettingsVaultView() {
                 onChange={(e) =>
                   updateSettings({ referenceYear: Number(e.target.value) || 2026 })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 CDI Anual (%)
               </label>
               <input
@@ -222,11 +222,11 @@ export function SettingsVaultView() {
                 step="0.05"
                 value={state.settings.cdiAnnual}
                 onChange={(e) => updateSettings({ cdiAnnual: Number(e.target.value) || 0 })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-amber-400"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-800"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 SELIC Anual (%)
               </label>
               <input
@@ -234,11 +234,11 @@ export function SettingsVaultView() {
                 step="0.05"
                 value={state.settings.selicAnnual}
                 onChange={(e) => updateSettings({ selicAnnual: Number(e.target.value) || 0 })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-amber-400"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-800"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 IPCA Acumulado (%)
               </label>
               <input
@@ -246,11 +246,11 @@ export function SettingsVaultView() {
                 step="0.05"
                 value={state.settings.ipcaAnnual}
                 onChange={(e) => updateSettings({ ipcaAnnual: Number(e.target.value) || 0 })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-sky-400"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-sky-700"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 IGP-M Acumulado (%)
               </label>
               <input
@@ -258,11 +258,11 @@ export function SettingsVaultView() {
                 step="0.05"
                 value={state.settings.igpmAnnual}
                 onChange={(e) => updateSettings({ igpmAnnual: Number(e.target.value) || 0 })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-sky-400"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-sky-700"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Aparência / Tema
               </label>
               <select
@@ -270,7 +270,7 @@ export function SettingsVaultView() {
                 onChange={(e) =>
                   updateSettings({ theme: e.target.value as "dark" | "light" })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="dark">Executive Dark (Obsidian & Gold)</option>
                 <option value="light">Editorial Light (Paper & Navy)</option>
@@ -287,7 +287,7 @@ export function SettingsVaultView() {
           <div className="space-y-4">
             <form onSubmit={handleExportEncryptedVault} className="space-y-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">
+                <label className="mb-1 block text-xs font-medium text-slate-700">
                   Senha para Criptografar Backup
                 </label>
                 <div className="flex gap-2">
@@ -296,11 +296,11 @@ export function SettingsVaultView() {
                     placeholder="Digite uma senha forte..."
                     value={vaultPassword}
                     onChange={(e) => setVaultPassword(e.target.value)}
-                    className="flex-1 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                    className="flex-1 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+                    className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-4 py-2 text-xs font-semibold text-white hover:bg-slate-800"
                   >
                     <Lock className="size-3.5" />
                     Exportar Cofre AES-256
@@ -309,8 +309,8 @@ export function SettingsVaultView() {
               </div>
             </form>
 
-            <div className="border-t border-slate-800 pt-3">
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+            <div className="border-t border-slate-200 pt-3">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Restaurar Backup (Cofre Criptografado ou Snapshot JSON)
               </label>
               <div className="flex flex-wrap items-center gap-2">
@@ -319,9 +319,9 @@ export function SettingsVaultView() {
                   placeholder="Senha do arquivo (se criptografado)"
                   value={importPassword}
                   onChange={(e) => setImportPassword(e.target.value)}
-                  className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-100"
+                  className="rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs text-slate-900"
                 />
-                <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-slate-800">
+                <label className="inline-flex cursor-pointer items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100">
                   <Upload className="size-3.5" />
                   Selecionar Arquivo JSON
                   <input
@@ -334,7 +334,7 @@ export function SettingsVaultView() {
                 <button
                   type="button"
                   onClick={handleExportPlainJson}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs text-slate-300 hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs text-slate-700 hover:bg-slate-100"
                 >
                   <Download className="size-3.5" />
                   JSON Simples
@@ -351,7 +351,7 @@ export function SettingsVaultView() {
         >
           <div className="space-y-3.5">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Supabase Project URL
               </label>
               <input
@@ -359,11 +359,11 @@ export function SettingsVaultView() {
                 placeholder="https://xxxx.supabase.co"
                 value={state.settings.supabaseUrl || ""}
                 onChange={(e) => updateSettings({ supabaseUrl: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Supabase Publishable / Anon Key
               </label>
               <input
@@ -371,7 +371,7 @@ export function SettingsVaultView() {
                 placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6..."
                 value={state.settings.supabaseAnonKey || ""}
                 onChange={(e) => updateSettings({ supabaseAnonKey: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-xs text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900"
               />
             </div>
 
@@ -380,7 +380,7 @@ export function SettingsVaultView() {
                 <button
                   onClick={pushToSupabaseCloud}
                   disabled={isSyncingCloud}
-                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-slate-950 hover:bg-emerald-400"
+                  className="inline-flex items-center gap-1.5 rounded-xl bg-emerald-500 px-4 py-2 text-xs font-semibold text-white hover:bg-emerald-400"
                 >
                   <Cloud className="size-3.5" />
                   Salvar na Nuvem
@@ -388,7 +388,7 @@ export function SettingsVaultView() {
                 <button
                   onClick={pullFromSupabaseCloud}
                   disabled={isSyncingCloud}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-4 py-2 text-xs font-medium text-slate-200 hover:bg-slate-800"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100"
                 >
                   <Database className="size-3.5" />
                   Restaurar da Nuvem
@@ -397,10 +397,10 @@ export function SettingsVaultView() {
 
               <button
                 onClick={resetToDemoSeed}
-                className="inline-flex items-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-2 text-xs text-rose-300 hover:bg-rose-500/20"
+                className="inline-flex items-center gap-1.5 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-xs text-rose-700 hover:bg-rose-500/20"
               >
                 <RotateCcw className="size-3.5" />
-                Restaurar Dados Demo
+                Zerar Todos os Lançamentos
               </button>
             </div>
           </div>

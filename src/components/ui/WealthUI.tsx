@@ -13,17 +13,17 @@ export function SectionHeader({
   actions?: React.ReactNode;
 }) {
   return (
-    <div className="mb-6 flex flex-col justify-between gap-4 border-b border-slate-800/80 pb-4 sm:flex-row sm:items-end">
+    <div className="mb-6 flex flex-col justify-between gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-end">
       <div>
         {eyebrow && (
-          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-400/90">
+          <p className="mb-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-500">
             {eyebrow}
           </p>
         )}
-        <h1 className="font-serif text-2xl font-bold tracking-tight text-slate-100 sm:text-3xl">
+        <h1 className="font-serif text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
           {title}
         </h1>
-        {subtitle && <p className="mt-1 text-sm text-slate-400">{subtitle}</p>}
+        {subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}
       </div>
       {actions && <div className="flex flex-wrap items-center gap-2.5">{actions}</div>}
     </div>
@@ -48,27 +48,27 @@ export function StatCard({
   badge?: React.ReactNode;
 }) {
   const toneClasses: Record<StatTone, string> = {
-    default: "text-slate-100",
-    gold: "text-amber-400",
-    positive: "text-emerald-400",
-    negative: "text-rose-400",
-    sky: "text-sky-400",
+    default: "text-slate-900",
+    gold: "text-slate-900",
+    positive: "text-emerald-700",
+    negative: "text-rose-700",
+    sky: "text-sky-700",
   };
 
   const borderClasses: Record<StatTone, string> = {
-    default: "border-slate-800/90",
-    gold: "border-amber-500/30 bg-gradient-to-br from-amber-500/10 via-slate-900/90 to-slate-900/90",
-    positive: "border-emerald-500/25",
-    negative: "border-rose-500/25",
-    sky: "border-sky-500/25",
+    default: "border-slate-200 bg-white",
+    gold: "border-slate-300 bg-slate-50/90",
+    positive: "border-emerald-200/80 bg-white",
+    negative: "border-rose-200/80 bg-white",
+    sky: "border-sky-200/80 bg-white",
   };
 
   return (
     <div
-      className={`rounded-2xl border bg-slate-900/85 p-4 shadow-sm backdrop-blur transition-colors ${borderClasses[tone]}`}
+      className={`rounded-2xl border p-4 shadow-sm transition-colors ${borderClasses[tone]}`}
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-[11px] font-medium uppercase tracking-wider text-slate-400">
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-slate-500">
           {label}
         </span>
         {icon && <span className="text-slate-400">{icon}</span>}
@@ -81,7 +81,7 @@ export function StatCard({
         </p>
         {badge}
       </div>
-      {hint && <p className="mt-1.5 text-xs text-slate-400">{hint}</p>}
+      {hint && <p className="mt-1.5 text-xs text-slate-500">{hint}</p>}
     </div>
   );
 }
@@ -103,13 +103,13 @@ export function Panel({
 }) {
   return (
     <section
-      className={`rounded-2xl border border-slate-800/90 bg-slate-900/80 shadow-sm backdrop-blur ${className}`}
+      className={`rounded-2xl border border-slate-200 bg-white shadow-sm ${className}`}
     >
       {(title || actions) && (
-        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800/80 px-5 py-4">
+        <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-4">
           <div>
-            {title && <h2 className="text-base font-semibold text-slate-100">{title}</h2>}
-            {subtitle && <p className="mt-0.5 text-xs text-slate-400">{subtitle}</p>}
+            {title && <h2 className="text-base font-semibold text-slate-900">{title}</h2>}
+            {subtitle && <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>}
           </div>
           {actions && <div className="flex flex-wrap items-center gap-2">{actions}</div>}
         </div>
@@ -127,12 +127,12 @@ export function Badge({
   tone?: "neutral" | "gold" | "positive" | "negative" | "sky" | "purple";
 }) {
   const styles = {
-    neutral: "bg-slate-800 text-slate-300 border-slate-700",
-    gold: "bg-amber-500/15 text-amber-300 border-amber-500/30",
-    positive: "bg-emerald-500/15 text-emerald-300 border-emerald-500/30",
-    negative: "bg-rose-500/15 text-rose-300 border-rose-500/30",
-    sky: "bg-sky-500/15 text-sky-300 border-sky-500/30",
-    purple: "bg-purple-500/15 text-purple-300 border-purple-500/30",
+    neutral: "bg-slate-100 text-slate-700 border-slate-200",
+    gold: "bg-slate-200/80 text-slate-800 border-slate-300",
+    positive: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    negative: "bg-rose-50 text-rose-700 border-rose-200",
+    sky: "bg-sky-50 text-sky-700 border-sky-200",
+    purple: "bg-indigo-50 text-indigo-700 border-indigo-200",
   };
   return (
     <span
@@ -154,14 +154,14 @@ export function ProgressBar({
 }) {
   const clamped = Math.max(0, Math.min(100, Number(pct) || 0));
   const colors = {
-    gold: "bg-amber-400",
-    positive: "bg-emerald-400",
-    negative: "bg-rose-500",
-    sky: "bg-sky-400",
-    purple: "bg-purple-500",
+    gold: "bg-slate-800",
+    positive: "bg-emerald-600",
+    negative: "bg-rose-600",
+    sky: "bg-sky-600",
+    purple: "bg-indigo-600",
   };
   return (
-    <div className={`w-full overflow-hidden rounded-full bg-slate-800 ${height}`}>
+    <div className={`w-full overflow-hidden rounded-full bg-slate-100 ${height}`}>
       <div
         className={`${height} rounded-full transition-all duration-300 ${colors[tone]}`}
         style={{ width: `${clamped}%` }}
@@ -180,9 +180,9 @@ export function EmptyState({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-800 px-6 py-10 text-center">
-      <p className="text-sm font-medium text-slate-300">{title}</p>
-      {description && <p className="mt-1 max-w-md text-xs text-slate-400">{description}</p>}
+    <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-slate-200 bg-slate-50/60 px-6 py-10 text-center">
+      <p className="text-sm font-medium text-slate-700">{title}</p>
+      {description && <p className="mt-1 max-w-md text-xs text-slate-500">{description}</p>}
       {action && <div className="mt-4">{action}</div>}
     </div>
   );
@@ -205,18 +205,18 @@ export function Modal({
 }) {
   if (!open) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-xs">
       <div
-        className={`relative max-h-[90vh] w-full ${maxWidth} overflow-y-auto rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl`}
+        className={`relative max-h-[90vh] w-full ${maxWidth} overflow-y-auto rounded-2xl border border-slate-200 bg-white p-6 shadow-xl`}
       >
-        <div className="mb-4 flex items-start justify-between gap-3 border-b border-slate-800 pb-3">
+        <div className="mb-4 flex items-start justify-between gap-3 border-b border-slate-100 pb-3">
           <div>
-            <h3 className="font-serif text-lg font-bold text-slate-100">{title}</h3>
-            {subtitle && <p className="mt-0.5 text-xs text-slate-400">{subtitle}</p>}
+            <h3 className="font-serif text-lg font-bold text-slate-900">{title}</h3>
+            {subtitle && <p className="mt-0.5 text-xs text-slate-500">{subtitle}</p>}
           </div>
           <button
             onClick={onClose}
-            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-800 hover:text-slate-100"
+            className="rounded-lg p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700"
             aria-label="Fechar"
           >
             <X className="size-4" />

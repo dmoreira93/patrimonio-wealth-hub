@@ -153,11 +153,11 @@ export function TransactionsAccountsView() {
               type="month"
               value={selectedMonth}
               onChange={(e) => e.target.value && setSelectedMonth(e.target.value)}
-              className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-100"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900"
             />
             <button
               onClick={() => setShowAccountModal(true)}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-2 text-xs font-medium text-slate-200 hover:bg-slate-800"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100"
             >
               <Plus className="size-3.5" />
               Nova Conta
@@ -171,23 +171,23 @@ export function TransactionsAccountsView() {
         {accountsWithBalance.map((acc) => (
           <div
             key={acc.id}
-            className="flex items-center justify-between rounded-2xl border border-slate-800 bg-slate-900/85 p-4"
+            className="flex items-center justify-between rounded-2xl border border-slate-200 bg-white p-4"
           >
             <div>
               <div className="flex items-center gap-2">
-                <Building2 className="size-4 text-amber-400" />
-                <span className="text-xs font-semibold text-slate-200">{acc.name}</span>
+                <Building2 className="size-4 text-slate-800" />
+                <span className="text-xs font-semibold text-slate-800">{acc.name}</span>
               </div>
-              <p className="mt-1.5 font-mono text-lg font-bold text-slate-100 tabular-nums">
+              <p className="mt-1.5 font-mono text-lg font-bold text-slate-900 tabular-nums">
                 {brl(acc.currentBalance)}
               </p>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-[11px] text-slate-500">
                 Saldo inicial: {brl(acc.openingBalance)}
               </p>
             </div>
             <button
               onClick={() => removeAccount(acc.id)}
-              className="rounded p-1 text-slate-500 hover:text-rose-400"
+              className="rounded p-1 text-slate-500 hover:text-rose-700"
               title="Remover conta"
             >
               <Trash2 className="size-3.5" />
@@ -208,20 +208,20 @@ export function TransactionsAccountsView() {
           <form onSubmit={handleAddTx} className="space-y-3.5">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Tipo</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Tipo</label>
                 <select
                   value={txForm.kind}
                   onChange={(e) =>
                     setTxForm({ ...txForm, kind: e.target.value as "income" | "expense" })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                 >
                   <option value="expense">Despesa (-)</option>
                   <option value="income">Receita (+)</option>
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Status</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Status</label>
                 <select
                   value={txForm.status}
                   onChange={(e) =>
@@ -230,7 +230,7 @@ export function TransactionsAccountsView() {
                       status: e.target.value as "realized" | "planned",
                     })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                 >
                   <option value="realized">Realizado (Pago/Recebido)</option>
                   <option value="planned">Previsto / Agendado</option>
@@ -239,48 +239,48 @@ export function TransactionsAccountsView() {
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Descrição</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Descrição</label>
               <input
                 type="text"
                 placeholder="Ex.: Salário, Supermercado, Energia..."
                 value={txForm.description}
                 onChange={(e) => setTxForm({ ...txForm, description: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                 required
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Valor (R$)</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Valor (R$)</label>
                 <input
                   type="text"
                   inputMode="decimal"
                   placeholder="0,00"
                   value={txForm.amount}
                   onChange={(e) => setTxForm({ ...txForm, amount: e.target.value })}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                   required
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Data</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Data</label>
                 <input
                   type="date"
                   value={txForm.date}
                   onChange={(e) => setTxForm({ ...txForm, date: e.target.value })}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Categoria</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Categoria</label>
                 <select
                   value={txForm.categoryId}
                   onChange={(e) => setTxForm({ ...txForm, categoryId: e.target.value })}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                 >
                   {state.categories
                     .filter((c) => c.kind === txForm.kind)
@@ -292,11 +292,11 @@ export function TransactionsAccountsView() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Conta</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Conta</label>
                 <select
                   value={txForm.accountId}
                   onChange={(e) => setTxForm({ ...txForm, accountId: e.target.value })}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                 >
                   {state.accounts.map((acc) => (
                     <option key={acc.id} value={acc.id}>
@@ -309,7 +309,7 @@ export function TransactionsAccountsView() {
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-amber-500 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-400"
+              className="w-full rounded-xl bg-slate-900 text-white py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
             >
               Registrar Lançamento
             </button>
@@ -322,19 +322,19 @@ export function TransactionsAccountsView() {
           actions={
             <div className="flex flex-wrap items-center gap-2">
               <div className="relative">
-                <Search className="pointer-events-none absolute left-2.5 top-2 size-3.5 text-slate-400" />
+                <Search className="pointer-events-none absolute left-2.5 top-2 size-3.5 text-slate-500" />
                 <input
                   type="text"
                   placeholder="Buscar descrição..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="rounded-xl border border-slate-700 bg-slate-950 pl-8 pr-3 py-1.5 text-xs text-slate-200"
+                  className="rounded-xl border border-slate-300 bg-white pl-8 pr-3 py-1.5 text-xs text-slate-800"
                 />
               </div>
               <select
                 value={filterKind}
                 onChange={(e) => setFilterKind(e.target.value as typeof filterKind)}
-                className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-200"
+                className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800"
               >
                 <option value="all">Todos</option>
                 <option value="income">Apenas Receitas</option>
@@ -349,7 +349,7 @@ export function TransactionsAccountsView() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                     <th className="pb-2.5 pr-3">Data</th>
                     <th className="pb-2.5 pr-3">Descrição</th>
                     <th className="pb-2.5 pr-3">Categoria</th>
@@ -358,16 +358,16 @@ export function TransactionsAccountsView() {
                     <th className="pb-2.5 text-right">Ações</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200">
                   {filteredTransactions.map((tx) => {
                     const cat = state.categories.find((c) => c.id === tx.categoryId);
                     return (
-                      <tr key={tx.id} className="hover:bg-slate-800/35">
-                        <td className="py-3 pr-3 font-mono text-xs text-slate-400">
+                      <tr key={tx.id} className="hover:bg-slate-50">
+                        <td className="py-3 pr-3 font-mono text-xs text-slate-500">
                           {formatDate(tx.date)}
                         </td>
-                        <td className="py-3 pr-3 font-medium text-slate-100">{tx.description}</td>
-                        <td className="py-3 pr-3 text-xs text-slate-300">{cat?.name ?? "—"}</td>
+                        <td className="py-3 pr-3 font-medium text-slate-900">{tx.description}</td>
+                        <td className="py-3 pr-3 text-xs text-slate-700">{cat?.name ?? "—"}</td>
                         <td className="py-3 pr-3">
                           {tx.status === "realized" ? (
                             <Badge tone="positive">Realizado</Badge>
@@ -376,7 +376,7 @@ export function TransactionsAccountsView() {
                               onClick={() =>
                                 upsertTransaction({ ...tx, status: "realized" })
                               }
-                              className="inline-flex items-center gap-1 rounded-full border border-amber-500/40 bg-amber-500/15 px-2.5 py-0.5 text-[11px] font-medium text-amber-300 hover:bg-amber-500/25"
+                              className="inline-flex items-center gap-1 rounded-full border border-slate-300 bg-slate-100 px-2.5 py-0.5 text-[11px] font-medium text-slate-700 hover:bg-amber-500/25"
                             >
                               <Check className="size-3" /> Confirmar
                             </button>
@@ -384,7 +384,7 @@ export function TransactionsAccountsView() {
                         </td>
                         <td
                           className={`py-3 pr-3 text-right font-mono font-bold tabular-nums ${
-                            tx.kind === "income" ? "text-emerald-400" : "text-rose-400"
+                            tx.kind === "income" ? "text-emerald-700" : "text-rose-700"
                           }`}
                         >
                           {tx.kind === "income" ? "+" : "-"} {brl(tx.amount)}
@@ -392,7 +392,7 @@ export function TransactionsAccountsView() {
                         <td className="py-3 text-right">
                           <button
                             onClick={() => removeTransaction(tx.id)}
-                            className="rounded p-1.5 text-slate-500 hover:text-rose-400"
+                            className="rounded p-1.5 text-slate-500 hover:text-rose-700"
                           >
                             <Trash2 className="size-4" />
                           </button>
@@ -415,28 +415,28 @@ export function TransactionsAccountsView() {
       >
         <form onSubmit={handleAddAccount} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">Nome da Conta</label>
+            <label className="mb-1 block text-xs font-medium text-slate-700">Nome da Conta</label>
             <input
               type="text"
               placeholder="Ex.: Itaú Personnalité, BTG Pactual"
               value={accForm.name}
               onChange={(e) => setAccForm({ ...accForm, name: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Instituição</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Instituição</label>
               <input
                 type="text"
                 value={accForm.institution}
                 onChange={(e) => setAccForm({ ...accForm, institution: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Saldo Inicial (R$)
               </label>
               <input
@@ -444,7 +444,7 @@ export function TransactionsAccountsView() {
                 inputMode="decimal"
                 value={accForm.openingBalance}
                 onChange={(e) => setAccForm({ ...accForm, openingBalance: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -452,13 +452,13 @@ export function TransactionsAccountsView() {
             <button
               type="button"
               onClick={() => setShowAccountModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white"
             >
               Salvar Conta
             </button>

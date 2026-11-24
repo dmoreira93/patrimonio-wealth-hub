@@ -207,7 +207,7 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
               type="month"
               value={selectedMonth}
               onChange={(e) => e.target.value && setSelectedMonth(e.target.value)}
-              className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-100 focus:border-amber-400 focus:outline-none"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-xs text-slate-900 focus:border-amber-400 focus:outline-none"
             />
           </div>
         }
@@ -219,28 +219,28 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           label="Patrimônio Líquido"
           value={brl(netWorth)}
           tone="gold"
-          icon={<Sparkles className="size-4 text-amber-400" />}
+          icon={<Sparkles className="size-4 text-slate-800" />}
           hint="Investimentos + Caixa − Saldo Devedor"
         />
         <StatCard
           label="Total em Investimentos"
           value={brl(investmentsSummary.totalPortfolio)}
           tone="positive"
-          icon={<TrendingUp className="size-4 text-emerald-400" />}
+          icon={<TrendingUp className="size-4 text-emerald-700" />}
           hint={`Renda passiva est.: ${brl(investmentsSummary.passiveMonthlyVar)}/mês em FIIs/Ações`}
         />
         <StatCard
           label="Faturas de Cartão no Mês"
           value={brl(cardInvoiceThisMonth)}
           tone="negative"
-          icon={<CreditCard className="size-4 text-rose-400" />}
+          icon={<CreditCard className="size-4 text-rose-700" />}
           hint={`${state.creditCards.length} cartões monitorados`}
         />
         <StatCard
           label="Saldo Devedor (Financiamentos)"
           value={brl(debtSummary.totalDebtBalance)}
           tone="sky"
-          icon={<Landmark className="size-4 text-sky-400" />}
+          icon={<Landmark className="size-4 text-sky-700" />}
           hint={`Economia em antecipações: ${brl(debtSummary.totalSavedDiscounts)}`}
         />
       </div>
@@ -251,14 +251,14 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           label="Receitas Realizadas (Mês)"
           value={brl(monthFlow.realizedIncome)}
           tone="positive"
-          icon={<ArrowUpRight className="size-4 text-emerald-400" />}
+          icon={<ArrowUpRight className="size-4 text-emerald-700" />}
           hint="Salário líquido + aluguéis + dividendos"
         />
         <StatCard
           label="Saídas & Compromissos (Mês)"
           value={brl(monthFlow.totalCommittedExpense)}
           tone="negative"
-          icon={<ArrowDownRight className="size-4 text-rose-400" />}
+          icon={<ArrowDownRight className="size-4 text-rose-700" />}
           hint={`Caixa: ${brl(monthFlow.realizedExpense)} + Fatura aberta: ${brl(monthFlow.unpaidCardMonth)}`}
         />
         <StatCard
@@ -272,7 +272,7 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           label="Disponível em Contas / Caixa"
           value={brl(cashBalance)}
           tone="default"
-          icon={<Building2 className="size-4 text-slate-400" />}
+          icon={<Building2 className="size-4 text-slate-500" />}
           hint={`${state.accounts.length} contas bancárias/corretoras`}
         />
       </div>
@@ -287,20 +287,20 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={timelineSeries}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.12)" vertical={false} />
-                <XAxis dataKey="month" stroke="#94a3b8" fontSize={12} />
+                <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" vertical={false} />
+                <XAxis dataKey="month" stroke="#64748b" fontSize={12} />
                 <YAxis
-                  stroke="#94a3b8"
+                  stroke="#64748b"
                   fontSize={12}
                   tickFormatter={(v) => compactBrl(Number(v))}
                 />
                 <Tooltip
                   formatter={(v: number) => brl(v)}
                   contentStyle={{
-                    backgroundColor: "#0f172a",
-                    borderColor: "#334155",
+                    backgroundColor: "#ffffff",
+                    borderColor: "#e2e8f0",
                     borderRadius: 12,
-                    color: "#f8fafc",
+                    color: "#0f172a",
                   }}
                 />
                 <Legend />
@@ -336,10 +336,10 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
                   <Tooltip
                     formatter={(v: number) => brl(v)}
                     contentStyle={{
-                      backgroundColor: "#0f172a",
-                      borderColor: "#334155",
+                      backgroundColor: "#ffffff",
+                      borderColor: "#e2e8f0",
                       borderRadius: 12,
-                      color: "#f8fafc",
+                      color: "#0f172a",
                     }}
                   />
                   <Legend wrapperStyle={{ fontSize: 11 }} />
@@ -359,7 +359,7 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           actions={
             <button
               onClick={() => onNavigate("cartoes")}
-              className="text-xs font-medium text-amber-400 hover:underline"
+              className="text-xs font-medium text-slate-800 hover:underline"
             >
               Abrir faturas →
             </button>
@@ -376,22 +376,22 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
               return (
                 <div
                   key={card.id}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-3.5"
+                  className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5"
                 >
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-sm font-semibold text-slate-100">{card.name}</p>
-                      <p className="text-[11px] text-slate-400">
+                      <p className="text-sm font-semibold text-slate-900">{card.name}</p>
+                      <p className="text-[11px] text-slate-500">
                         Fecha dia {card.closingDay} · Vence dia {card.dueDay}
                       </p>
                     </div>
-                    <span className="font-mono text-sm font-bold text-rose-400 tabular-nums">
+                    <span className="font-mono text-sm font-bold text-rose-700 tabular-nums">
                       {brl(total)}
                     </span>
                   </div>
                   <div className="mt-2.5">
                     <ProgressBar pct={pctLimit} tone="purple" height="h-1.5" />
-                    <p className="mt-1 text-[11px] text-slate-400">
+                    <p className="mt-1 text-[11px] text-slate-500">
                       {entries.length} lançamento(s) no mês · Limite {brl(card.limitAmount)}
                     </p>
                   </div>
@@ -408,35 +408,35 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           actions={
             <button
               onClick={() => onNavigate("investimentos")}
-              className="text-xs font-medium text-amber-400 hover:underline"
+              className="text-xs font-medium text-slate-800 hover:underline"
             >
               Ver carteira completa →
             </button>
           }
         >
           <div className="space-y-3">
-            <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+            <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-3">
               <div>
-                <p className="text-xs text-slate-400">Ações, FIIs & ETFs (B3)</p>
-                <p className="font-mono text-sm font-bold text-slate-100 tabular-nums">
+                <p className="text-xs text-slate-500">Ações, FIIs & ETFs (B3)</p>
+                <p className="font-mono text-sm font-bold text-slate-900 tabular-nums">
                   {brl(investmentsSummary.varTotal)}
                 </p>
               </div>
               <Badge tone="gold">{state.variableAssets.length} tickers</Badge>
             </div>
-            <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+            <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-3">
               <div>
-                <p className="text-xs text-slate-400">Renda Fixa & Tesouro (Líquido IR)</p>
-                <p className="font-mono text-sm font-bold text-emerald-400 tabular-nums">
+                <p className="text-xs text-slate-500">Renda Fixa & Tesouro (Líquido IR)</p>
+                <p className="font-mono text-sm font-bold text-emerald-700 tabular-nums">
                   {brl(investmentsSummary.fixedTotal)}
                 </p>
               </div>
               <Badge tone="positive">CDI {state.settings.cdiAnnual}%</Badge>
             </div>
-            <div className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 p-3">
+            <div className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 p-3">
               <div>
-                <p className="text-xs text-slate-400">Fundos & Previdência</p>
-                <p className="font-mono text-sm font-bold text-sky-400 tabular-nums">
+                <p className="text-xs text-slate-500">Fundos & Previdência</p>
+                <p className="font-mono text-sm font-bold text-sky-700 tabular-nums">
                   {brl(investmentsSummary.fundsTotal)}
                 </p>
               </div>
@@ -452,7 +452,7 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
           actions={
             <button
               onClick={() => onNavigate("dividas")}
-              className="text-xs font-medium text-amber-400 hover:underline"
+              className="text-xs font-medium text-slate-800 hover:underline"
             >
               Baixar parcelas →
             </button>
@@ -464,22 +464,22 @@ export function DashboardView({ onNavigate }: { onNavigate: (tab: NavSectionId) 
               return (
                 <div
                   key={debt.id}
-                  className="rounded-xl border border-slate-800 bg-slate-950/60 p-3.5"
+                  className="rounded-xl border border-slate-200 bg-slate-50/70 p-3.5"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <div>
-                      <p className="text-sm font-semibold text-slate-100">{debt.name}</p>
-                      <p className="text-[11px] text-slate-400">
+                      <p className="text-sm font-semibold text-slate-900">{debt.name}</p>
+                      <p className="text-[11px] text-slate-500">
                         {debt.lender} · {s.paidCount}/{s.totalCount} pagas
                       </p>
                     </div>
-                    <span className="font-mono text-xs font-bold text-amber-400 tabular-nums">
+                    <span className="font-mono text-xs font-bold text-slate-800 tabular-nums">
                       {brl(s.currentInstallmentValue)}/mês
                     </span>
                   </div>
                   <div className="mt-2.5">
                     <ProgressBar pct={s.progressPct} tone="positive" height="h-1.5" />
-                    <div className="mt-1 flex justify-between text-[11px] text-slate-400">
+                    <div className="mt-1 flex justify-between text-[11px] text-slate-500">
                       <span>Quitado: {pct(s.progressPct, 0)}</span>
                       <span>Saldo: {brl(s.outstandingPrincipal)}</span>
                     </div>

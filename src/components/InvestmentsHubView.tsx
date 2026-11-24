@@ -482,14 +482,14 @@ export function InvestmentsHubView() {
           <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() => openQuickTrade("buy")}
-              className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3.5 py-2 text-xs font-semibold text-slate-950 shadow transition hover:bg-amber-400"
+              className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-3.5 py-2 text-xs font-semibold text-white shadow transition hover:bg-slate-800"
             >
               <PlusCircle className="size-4" />
               Lançar Compra / Venda
             </button>
             <button
               onClick={() => openQuickDividend()}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-500/40 bg-emerald-500/15 px-3.5 py-2 text-xs font-semibold text-emerald-300 transition hover:bg-emerald-500/25"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-emerald-300 bg-emerald-50 px-3.5 py-2 text-xs font-semibold text-emerald-800 transition hover:bg-emerald-500/25"
             >
               <HandCoins className="size-4" />
               Lançar Rendimento / Dividendo
@@ -497,7 +497,7 @@ export function InvestmentsHubView() {
             <button
               onClick={syncWithGoogleSheet}
               disabled={isSyncingSheet}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3.5 py-2 text-xs font-medium text-slate-200 transition hover:border-amber-400/50 hover:text-amber-300"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-xs font-medium text-slate-800 transition hover:border-amber-400/50 hover:text-slate-700"
             >
               <RefreshCw className={`size-3.5 ${isSyncingSheet ? "animate-spin" : ""}`} />
               Sincronizar GOOGLEFINANCE
@@ -516,7 +516,7 @@ export function InvestmentsHubView() {
                 });
                 setQuotesModalOpen(true);
               }}
-              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100"
             >
               <SlidersHorizontal className="size-3.5" />
               Cotações & CDI/SELIC
@@ -560,7 +560,7 @@ export function InvestmentsHubView() {
       </div>
 
       {/* Sub-navegação interna da Central de Investimentos */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div className="flex flex-wrap gap-2">
           {[
             { id: "overview", label: "1. Visão Consolidada & Perspectiva" },
@@ -573,8 +573,8 @@ export function InvestmentsHubView() {
               onClick={() => setSubTab(tab.id as InvestSubTab)}
               className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
                 subTab === tab.id
-                  ? "bg-amber-500 text-slate-950 shadow"
-                  : "border border-slate-800 bg-slate-900/70 text-slate-300 hover:bg-slate-800"
+                  ? "bg-slate-900 text-white shadow"
+                  : "border border-slate-200 bg-slate-50 text-slate-700 hover:bg-slate-100"
               }`}
             >
               {tab.label}
@@ -587,7 +587,7 @@ export function InvestmentsHubView() {
             href={state.settings.googleSpreadsheetUrl}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-400 hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-800 hover:underline"
           >
             <ExternalLink className="size-3.5" />
             Abrir Planilha Google
@@ -607,9 +607,9 @@ export function InvestmentsHubView() {
               subtitle="Projeção combinando sua carteira atual + aportes mensais em 3 cenários (Conservador, Base CDI/IPCA+ e Otimista)"
               className="lg:col-span-2"
             >
-              <div className="mb-4 grid gap-3 rounded-xl border border-slate-800 bg-slate-950/60 p-3.5 sm:grid-cols-3">
+              <div className="mb-4 grid gap-3 rounded-xl border border-slate-200 bg-slate-50/70 p-3.5 sm:grid-cols-3">
                 <div>
-                  <label className="block text-[11px] uppercase text-slate-400">
+                  <label className="block text-[11px] uppercase text-slate-500">
                     Aporte Mensal Planejado (R$)
                   </label>
                   <input
@@ -617,11 +617,11 @@ export function InvestmentsHubView() {
                     step="250"
                     value={monthlyAporteSim}
                     onChange={(e) => setMonthlyAporteSim(Number(e.target.value) || 0)}
-                    className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-slate-100"
+                    className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] uppercase text-slate-400">
+                  <label className="block text-[11px] uppercase text-slate-500">
                     Rentabilidade Anual Base (%)
                   </label>
                   <input
@@ -629,17 +629,17 @@ export function InvestmentsHubView() {
                     step="0.25"
                     value={expectedAnnualRateSim}
                     onChange={(e) => setExpectedAnnualRateSim(Number(e.target.value) || 10)}
-                    className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-slate-100"
+                    className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-900"
                   />
                 </div>
                 <div>
-                  <label className="block text-[11px] uppercase text-slate-400">
+                  <label className="block text-[11px] uppercase text-slate-500">
                     Horizonte (Anos)
                   </label>
                   <select
                     value={yearsHorizonSim}
                     onChange={(e) => setYearsHorizonSim(Number(e.target.value))}
-                    className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-slate-100"
+                    className="mt-1 w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-900"
                   >
                     <option value={1}>1 Ano (12 meses)</option>
                     <option value={3}>3 Anos (36 meses)</option>
@@ -663,18 +663,18 @@ export function InvestmentsHubView() {
                         <stop offset="100%" stopColor="#10B981" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.12)" />
-                    <XAxis dataKey="yearLabel" stroke="#94a3b8" fontSize={12} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="yearLabel" stroke="#64748b" fontSize={12} />
                     <YAxis
-                      stroke="#94a3b8"
+                      stroke="#64748b"
                       fontSize={12}
                       tickFormatter={(v) => compactBrl(Number(v))}
                     />
                     <Tooltip
                       formatter={(v: number) => brl(v)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        borderColor: "#334155",
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e2e8f0",
                         borderRadius: 12,
                       }}
                     />
@@ -708,19 +708,19 @@ export function InvestmentsHubView() {
 
               {perspectiveData.length > 0 && (
                 <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                    <span className="text-[11px] uppercase text-slate-400">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
+                    <span className="text-[11px] uppercase text-slate-500">
                       Patrimônio Base em {yearsHorizonSim} ano(s)
                     </span>
-                    <p className="mt-1 font-mono text-lg font-bold text-amber-400 tabular-nums">
+                    <p className="mt-1 font-mono text-lg font-bold text-slate-800 tabular-nums">
                       {brl(perspectiveData[perspectiveData.length - 1]?.basePatrimony)}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                    <span className="text-[11px] uppercase text-slate-400">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
+                    <span className="text-[11px] uppercase text-slate-500">
                       Juros Compostos Ganhos
                     </span>
-                    <p className="mt-1 font-mono text-lg font-bold text-emerald-400 tabular-nums">
+                    <p className="mt-1 font-mono text-lg font-bold text-emerald-700 tabular-nums">
                       +
                       {brl(
                         (perspectiveData[perspectiveData.length - 1]?.basePatrimony ?? 0) -
@@ -728,11 +728,11 @@ export function InvestmentsHubView() {
                       )}
                     </p>
                   </div>
-                  <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-3">
-                    <span className="text-[11px] uppercase text-slate-400">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50/70 p-3">
+                    <span className="text-[11px] uppercase text-slate-500">
                       Renda Passiva Mensal Estimada
                     </span>
-                    <p className="mt-1 font-mono text-lg font-bold text-sky-400 tabular-nums">
+                    <p className="mt-1 font-mono text-lg font-bold text-sky-700 tabular-nums">
                       {brl(
                         perspectiveData[perspectiveData.length - 1]?.estimatedMonthlyPassiveIncome,
                       )}
@@ -766,8 +766,8 @@ export function InvestmentsHubView() {
                     <Tooltip
                       formatter={(v: number) => brl(v)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        borderColor: "#334155",
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e2e8f0",
                         borderRadius: 12,
                       }}
                     />
@@ -783,7 +783,7 @@ export function InvestmentsHubView() {
                   return (
                     <div
                       key={item.name}
-                      className="flex items-center justify-between text-xs text-slate-300"
+                      className="flex items-center justify-between text-xs text-slate-700"
                     >
                       <span className="flex items-center gap-2">
                         <span
@@ -817,7 +817,7 @@ export function InvestmentsHubView() {
                 <button
                   onClick={pushAllTickersToGoogleSheet}
                   disabled={isSyncingSheet}
-                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-300 hover:border-amber-400/50 hover:text-amber-300"
+                  className="inline-flex items-center gap-1.5 rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-700 hover:border-amber-400/50 hover:text-slate-700"
                 >
                   <CloudUpload className="size-3.5" />
                   Enviar Carteira p/ Planilha
@@ -834,7 +834,7 @@ export function InvestmentsHubView() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[980px] text-sm">
                   <thead>
-                    <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                    <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                       <th className="pb-3 pr-3">Ativo / Segmento</th>
                       <th className="pb-3 pr-3 text-right">Qtde</th>
                       <th className="pb-3 pr-3 text-right">Preço Médio</th>
@@ -845,30 +845,30 @@ export function InvestmentsHubView() {
                       <th className="pb-3 text-center">Ações Rápidas</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60">
+                  <tbody className="divide-y divide-slate-200">
                     {enrichedVariable.map((inv) => {
                       const isPosDay = inv.dayChangePct >= 0;
                       const isPosTotal = inv.totalReturn >= 0;
                       return (
-                        <tr key={inv.id} className="hover:bg-slate-800/35">
+                        <tr key={inv.id} className="hover:bg-slate-50">
                           <td className="py-3.5 pr-3">
                             <div className="flex items-center gap-2">
-                              <span className="font-mono font-bold text-slate-100">
+                              <span className="font-mono font-bold text-slate-900">
                                 {inv.ticker}
                               </span>
                               <Badge tone={inv.type === "FII" ? "sky" : "gold"}>{inv.type}</Badge>
                               {inv.pvp && (
-                                <span className="font-mono text-[11px] text-slate-400">
+                                <span className="font-mono text-[11px] text-slate-500">
                                   P/VP {inv.pvp.toFixed(2)}
                                 </span>
                               )}
                             </div>
-                            <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-400">
+                            <div className="mt-0.5 flex items-center gap-2 text-xs text-slate-500">
                               <span>{inv.segment}</span>
                               <span>·</span>
                               <span
                                 className={`inline-flex items-center gap-0.5 font-mono ${
-                                  isPosDay ? "text-emerald-400" : "text-rose-400"
+                                  isPosDay ? "text-emerald-700" : "text-rose-700"
                                 }`}
                               >
                                 {isPosDay ? (
@@ -881,24 +881,24 @@ export function InvestmentsHubView() {
                               </span>
                             </div>
                           </td>
-                          <td className="py-3.5 pr-3 text-right font-mono text-slate-200 tabular-nums">
+                          <td className="py-3.5 pr-3 text-right font-mono text-slate-800 tabular-nums">
                             {inv.quantity}
                           </td>
-                          <td className="py-3.5 pr-3 text-right font-mono text-slate-300 tabular-nums">
+                          <td className="py-3.5 pr-3 text-right font-mono text-slate-700 tabular-nums">
                             {brl(inv.averagePrice)}
                           </td>
-                          <td className="py-3.5 pr-3 text-right font-mono font-semibold text-slate-100 tabular-nums">
+                          <td className="py-3.5 pr-3 text-right font-mono font-semibold text-slate-900 tabular-nums">
                             {brl(inv.currentPrice)}
                           </td>
-                          <td className="py-3.5 pr-3 text-right font-mono font-bold text-amber-400 tabular-nums">
+                          <td className="py-3.5 pr-3 text-right font-mono font-bold text-slate-800 tabular-nums">
                             {brl(inv.marketValue)}
                           </td>
-                          <td className="py-3.5 pr-3 text-right font-mono text-emerald-400 tabular-nums">
+                          <td className="py-3.5 pr-3 text-right font-mono text-emerald-700 tabular-nums">
                             {inv.dividendsReceived > 0 ? `+ ${brl(inv.dividendsReceived)}` : "—"}
                           </td>
                           <td
                             className={`py-3.5 pr-3 text-right font-mono font-bold tabular-nums ${
-                              isPosTotal ? "text-emerald-400" : "text-rose-400"
+                              isPosTotal ? "text-emerald-700" : "text-rose-700"
                             }`}
                           >
                             <div>
@@ -923,7 +923,7 @@ export function InvestmentsHubView() {
                                   )
                                 }
                                 title="Lançar Compra"
-                                className="rounded-lg bg-slate-800 p-2 text-slate-300 transition hover:bg-sky-500 hover:text-slate-950"
+                                className="rounded-lg bg-slate-100 p-2 text-slate-700 transition hover:bg-sky-500 hover:text-white"
                               >
                                 <PlusCircle className="size-4" />
                               </button>
@@ -939,21 +939,21 @@ export function InvestmentsHubView() {
                                   )
                                 }
                                 title="Registrar Venda"
-                                className="rounded-lg bg-slate-800 p-2 text-slate-300 transition hover:bg-rose-500 hover:text-white"
+                                className="rounded-lg bg-slate-100 p-2 text-slate-700 transition hover:bg-rose-500 hover:text-white"
                               >
                                 <MinusCircle className="size-4" />
                               </button>
                               <button
                                 onClick={() => openQuickDividend(inv.ticker, inv.type)}
                                 title="Lançar Dividendo / Rendimento"
-                                className="rounded-lg bg-slate-800 p-2 text-slate-300 transition hover:bg-emerald-500 hover:text-slate-950"
+                                className="rounded-lg bg-slate-100 p-2 text-slate-700 transition hover:bg-emerald-500 hover:text-white"
                               >
                                 <HandCoins className="size-4" />
                               </button>
                               <button
                                 onClick={() => removeVariableAsset(inv.id)}
                                 title="Remover ativo"
-                                className="rounded-lg bg-slate-800/60 p-2 text-slate-500 transition hover:bg-rose-500/20 hover:text-rose-400"
+                                className="rounded-lg bg-slate-100 p-2 text-slate-500 transition hover:bg-rose-500/20 hover:text-rose-700"
                               >
                                 <Trash2 className="size-4" />
                               </button>
@@ -980,7 +980,7 @@ export function InvestmentsHubView() {
                 <div className="max-h-80 overflow-y-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-slate-800 text-left text-[11px] uppercase text-slate-400">
+                      <tr className="border-b border-slate-200 text-left text-[11px] uppercase text-slate-500">
                         <th className="pb-2 pr-2">Data</th>
                         <th className="pb-2 pr-2">Ativo</th>
                         <th className="pb-2 pr-2">Tipo</th>
@@ -989,13 +989,13 @@ export function InvestmentsHubView() {
                         <th className="pb-2" />
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/60">
+                    <tbody className="divide-y divide-slate-200">
                       {state.trades.map((t) => (
                         <tr key={t.id}>
-                          <td className="py-2.5 pr-2 font-mono text-xs text-slate-400">
+                          <td className="py-2.5 pr-2 font-mono text-xs text-slate-500">
                             {formatDate(t.tradeDate)}
                           </td>
-                          <td className="py-2.5 pr-2 font-mono font-semibold text-slate-100">
+                          <td className="py-2.5 pr-2 font-mono font-semibold text-slate-900">
                             {t.ticker}
                           </td>
                           <td className="py-2.5 pr-2">
@@ -1003,16 +1003,16 @@ export function InvestmentsHubView() {
                               {t.side === "buy" ? "Compra" : "Venda"}
                             </Badge>
                           </td>
-                          <td className="py-2.5 pr-2 text-right font-mono text-xs text-slate-300 tabular-nums">
+                          <td className="py-2.5 pr-2 text-right font-mono text-xs text-slate-700 tabular-nums">
                             {t.quantity} × {brl(t.price)}
                           </td>
-                          <td className="py-2.5 pr-2 text-right font-mono font-semibold text-slate-100 tabular-nums">
+                          <td className="py-2.5 pr-2 text-right font-mono font-semibold text-slate-900 tabular-nums">
                             {brl(t.quantity * t.price + t.fees)}
                           </td>
                           <td className="py-2.5 text-right">
                             <button
                               onClick={() => removeTrade(t.id)}
-                              className="rounded p-1 text-slate-500 hover:text-rose-400"
+                              className="rounded p-1 text-slate-500 hover:text-rose-700"
                             >
                               <Trash2 className="size-3.5" />
                             </button>
@@ -1035,7 +1035,7 @@ export function InvestmentsHubView() {
                 <div className="max-h-80 overflow-y-auto">
                   <table className="w-full text-sm">
                     <thead>
-                      <tr className="border-b border-slate-800 text-left text-[11px] uppercase text-slate-400">
+                      <tr className="border-b border-slate-200 text-left text-[11px] uppercase text-slate-500">
                         <th className="pb-2 pr-2">Data</th>
                         <th className="pb-2 pr-2">Ativo</th>
                         <th className="pb-2 pr-2">Evento</th>
@@ -1043,23 +1043,23 @@ export function InvestmentsHubView() {
                         <th className="pb-2" />
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-slate-800/60">
+                    <tbody className="divide-y divide-slate-200">
                       {state.dividends.map((d) => (
                         <tr key={d.id}>
-                          <td className="py-2.5 pr-2 font-mono text-xs text-slate-400">
+                          <td className="py-2.5 pr-2 font-mono text-xs text-slate-500">
                             {formatDate(d.payDate)}
                           </td>
-                          <td className="py-2.5 pr-2 font-mono font-semibold text-slate-100">
+                          <td className="py-2.5 pr-2 font-mono font-semibold text-slate-900">
                             {d.ticker}
                           </td>
-                          <td className="py-2.5 pr-2 text-xs text-slate-300">{d.type}</td>
-                          <td className="py-2.5 pr-2 text-right font-mono font-bold text-emerald-400 tabular-nums">
+                          <td className="py-2.5 pr-2 text-xs text-slate-700">{d.type}</td>
+                          <td className="py-2.5 pr-2 text-right font-mono font-bold text-emerald-700 tabular-nums">
                             + {brl(d.amount)}
                           </td>
                           <td className="py-2.5 text-right">
                             <button
                               onClick={() => removeDividend(d.id)}
-                              className="rounded p-1 text-slate-500 hover:text-rose-400"
+                              className="rounded p-1 text-slate-500 hover:text-rose-700"
                             >
                               <Trash2 className="size-3.5" />
                             </button>
@@ -1088,7 +1088,7 @@ export function InvestmentsHubView() {
             >
               <form onSubmit={handleCreateFixedIncome} className="space-y-3.5">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Nome do Título
                   </label>
                   <input
@@ -1096,13 +1096,13 @@ export function InvestmentsHubView() {
                     placeholder="Ex.: Tesouro IPCA+ 2035, CDB Banco Master 120% CDI"
                     value={fixedForm.title}
                     onChange={(e) => setFixedForm({ ...fixedForm, title: e.target.value })}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     required
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">Tipo</label>
+                    <label className="mb-1 block text-xs font-medium text-slate-700">Tipo</label>
                     <select
                       value={fixedForm.type}
                       onChange={(e) => {
@@ -1113,7 +1113,7 @@ export function InvestmentsHubView() {
                         else if (t === "Tesouro Prefixado") rt = "pre";
                         setFixedForm({ ...fixedForm, type: t, rateType: rt });
                       }}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     >
                       <option value="Tesouro IPCA+">Tesouro IPCA+</option>
                       <option value="Tesouro Selic">Tesouro Selic</option>
@@ -1128,7 +1128,7 @@ export function InvestmentsHubView() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Instituição / Custódia
                     </label>
                     <input
@@ -1137,13 +1137,13 @@ export function InvestmentsHubView() {
                       onChange={(e) =>
                         setFixedForm({ ...fixedForm, institution: e.target.value })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Indexador
                     </label>
                     <select
@@ -1154,7 +1154,7 @@ export function InvestmentsHubView() {
                           rateType: e.target.value as FixedRateType,
                         })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     >
                       <option value="posCDI">% do CDI</option>
                       <option value="posSelic">% da SELIC</option>
@@ -1163,7 +1163,7 @@ export function InvestmentsHubView() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Taxa ({fixedForm.rateType === "posCDI" ? "% CDI" : "% a.a."})
                     </label>
                     <input
@@ -1171,12 +1171,12 @@ export function InvestmentsHubView() {
                       inputMode="decimal"
                       value={fixedForm.rateValue}
                       onChange={(e) => setFixedForm({ ...fixedForm, rateValue: e.target.value })}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Valor Aplicado (R$)
                   </label>
                   <input
@@ -1185,13 +1185,13 @@ export function InvestmentsHubView() {
                     placeholder="10000,00"
                     value={fixedForm.principal}
                     onChange={(e) => setFixedForm({ ...fixedForm, principal: e.target.value })}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                     required
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Data Aplicação
                     </label>
                     <input
@@ -1200,11 +1200,11 @@ export function InvestmentsHubView() {
                       onChange={(e) =>
                         setFixedForm({ ...fixedForm, applicationDate: e.target.value })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Vencimento
                     </label>
                     <input
@@ -1214,13 +1214,13 @@ export function InvestmentsHubView() {
                       onChange={(e) =>
                         setFixedForm({ ...fixedForm, maturityDate: e.target.value })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 disabled:opacity-40"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 disabled:opacity-40"
                     />
                   </div>
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-amber-500 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-400"
+                  className="w-full rounded-xl bg-slate-900 text-white py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
                 >
                   Adicionar Título
                 </button>
@@ -1236,24 +1236,24 @@ export function InvestmentsHubView() {
                 {evaluatedFixed.map(({ asset, eval: ev }) => (
                   <div
                     key={asset.id}
-                    className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                    className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                   >
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div>
                         <div className="flex items-center gap-2">
-                          <h3 className="font-semibold text-slate-100">{asset.title}</h3>
+                          <h3 className="font-semibold text-slate-900">{asset.title}</h3>
                           <Badge tone={ev.exempt ? "positive" : "sky"}>
                             {ev.exempt ? "Isento de IR" : `IR Hoje: ${ev.irRateTodayPct}%`}
                           </Badge>
                         </div>
-                        <p className="mt-0.5 text-xs text-slate-400">
+                        <p className="mt-0.5 text-xs text-slate-500">
                           {asset.institution} · {asset.type} · {ev.rateLabel} (equiv.{" "}
                           {pct(ev.annualRatePct)} a.a.)
                         </p>
                       </div>
                       <button
                         onClick={() => removeFixedIncome(asset.id)}
-                        className="rounded p-1.5 text-slate-500 hover:text-rose-400"
+                        className="rounded p-1.5 text-slate-500 hover:text-rose-700"
                       >
                         <Trash2 className="size-4" />
                       </button>
@@ -1261,7 +1261,7 @@ export function InvestmentsHubView() {
 
                     {ev.elapsedPct !== null && (
                       <div className="mt-3">
-                        <div className="mb-1 flex justify-between text-[11px] text-slate-400">
+                        <div className="mb-1 flex justify-between text-[11px] text-slate-500">
                           <span>Aplicado em {formatDate(asset.applicationDate)}</span>
                           <span>Vence em {formatDate(asset.maturityDate)}</span>
                         </div>
@@ -1271,34 +1271,34 @@ export function InvestmentsHubView() {
 
                     <div className="mt-3.5 grid grid-cols-2 gap-3 sm:grid-cols-4">
                       <div>
-                        <span className="text-[11px] uppercase text-slate-400">
+                        <span className="text-[11px] uppercase text-slate-500">
                           Valor Aplicado
                         </span>
-                        <p className="font-mono text-sm font-semibold text-slate-200 tabular-nums">
+                        <p className="font-mono text-sm font-semibold text-slate-800 tabular-nums">
                           {brl(ev.principal)}
                         </p>
                       </div>
                       <div>
-                        <span className="text-[11px] uppercase text-slate-400">
+                        <span className="text-[11px] uppercase text-slate-500">
                           Líquido Hoje
                         </span>
-                        <p className="font-mono text-sm font-bold text-emerald-400 tabular-nums">
+                        <p className="font-mono text-sm font-bold text-emerald-700 tabular-nums">
                           {brl(ev.netToday)}
                         </p>
                       </div>
                       <div>
-                        <span className="text-[11px] uppercase text-slate-400">
+                        <span className="text-[11px] uppercase text-slate-500">
                           Ganho Líquido Hoje
                         </span>
-                        <p className="font-mono text-sm font-semibold text-emerald-400 tabular-nums">
+                        <p className="font-mono text-sm font-semibold text-emerald-700 tabular-nums">
                           +{brl(ev.netGainToday)} ({pct(ev.netGainTodayPct, 1)})
                         </p>
                       </div>
                       <div>
-                        <span className="text-[11px] uppercase text-slate-400">
+                        <span className="text-[11px] uppercase text-slate-500">
                           Projeção Vencimento
                         </span>
-                        <p className="font-mono text-sm font-bold text-amber-400 tabular-nums">
+                        <p className="font-mono text-sm font-bold text-slate-800 tabular-nums">
                           {brl(ev.netAtMaturity)}
                         </p>
                       </div>
@@ -1314,7 +1314,7 @@ export function InvestmentsHubView() {
             <Panel title="Novo Fundo / Previdência" subtitle="Multimercado, PGBL/VGBL, Cambial...">
               <form onSubmit={handleCreateFund} className="space-y-3.5">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Nome do Fundo
                   </label>
                   <input
@@ -1322,13 +1322,13 @@ export function InvestmentsHubView() {
                     placeholder="Ex.: Kinea Atlas Multimercado"
                     value={fundForm.name}
                     onChange={(e) => setFundForm({ ...fundForm, name: e.target.value })}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     required
                   />
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">Classe</label>
+                    <label className="mb-1 block text-xs font-medium text-slate-700">Classe</label>
                     <select
                       value={fundForm.type}
                       onChange={(e) =>
@@ -1337,7 +1337,7 @@ export function InvestmentsHubView() {
                           type: e.target.value as InvestmentFund["type"],
                         })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     >
                       <option value="Multimercado">Multimercado</option>
                       <option value="Renda Fixa">Renda Fixa</option>
@@ -1347,20 +1347,20 @@ export function InvestmentsHubView() {
                     </select>
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Instituição
                     </label>
                     <input
                       type="text"
                       value={fundForm.institution}
                       onChange={(e) => setFundForm({ ...fundForm, institution: e.target.value })}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
                     />
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Valor Aplicado (R$)
                     </label>
                     <input
@@ -1370,12 +1370,12 @@ export function InvestmentsHubView() {
                       onChange={(e) =>
                         setFundForm({ ...fundForm, investedAmount: e.target.value })
                       }
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                       required
                     />
                   </div>
                   <div>
-                    <label className="mb-1 block text-xs font-medium text-slate-300">
+                    <label className="mb-1 block text-xs font-medium text-slate-700">
                       Saldo Atual (R$)
                     </label>
                     <input
@@ -1383,13 +1383,13 @@ export function InvestmentsHubView() {
                       inputMode="decimal"
                       value={fundForm.currentValue}
                       onChange={(e) => setFundForm({ ...fundForm, currentValue: e.target.value })}
-                      className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                      className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                     />
                   </div>
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-amber-500 py-2.5 text-sm font-semibold text-slate-950 hover:bg-amber-400"
+                  className="w-full rounded-xl bg-slate-900 text-white py-2.5 text-sm font-semibold text-white hover:bg-slate-800"
                 >
                   Salvar Fundo
                 </button>
@@ -1404,40 +1404,40 @@ export function InvestmentsHubView() {
                   return (
                     <div
                       key={f.id}
-                      className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                      className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                     >
                       <div className="flex items-start justify-between">
                         <div>
-                          <h4 className="font-semibold text-slate-100">{f.name}</h4>
-                          <p className="text-xs text-slate-400">
+                          <h4 className="font-semibold text-slate-900">{f.name}</h4>
+                          <p className="text-xs text-slate-500">
                             {f.type} · {f.institution}
                           </p>
                         </div>
                         <button
                           onClick={() => removeFund(f.id)}
-                          className="text-slate-500 hover:text-rose-400"
+                          className="text-slate-500 hover:text-rose-700"
                         >
                           <Trash2 className="size-4" />
                         </button>
                       </div>
                       <div className="mt-3 grid grid-cols-3 gap-2">
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Investido</span>
-                          <p className="font-mono text-xs text-slate-300 tabular-nums">
+                          <span className="text-[10px] uppercase text-slate-500">Investido</span>
+                          <p className="font-mono text-xs text-slate-700 tabular-nums">
                             {brl(f.investedAmount)}
                           </p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Atual</span>
-                          <p className="font-mono text-sm font-bold text-slate-100 tabular-nums">
+                          <span className="text-[10px] uppercase text-slate-500">Atual</span>
+                          <p className="font-mono text-sm font-bold text-slate-900 tabular-nums">
                             {brl(f.currentValue)}
                           </p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Resultado</span>
+                          <span className="text-[10px] uppercase text-slate-500">Resultado</span>
                           <p
                             className={`font-mono text-xs font-bold tabular-nums ${
-                              gain >= 0 ? "text-emerald-400" : "text-rose-400"
+                              gain >= 0 ? "text-emerald-700" : "text-rose-700"
                             }`}
                           >
                             {gain >= 0 ? "+" : ""}
@@ -1466,7 +1466,7 @@ export function InvestmentsHubView() {
             >
               <div className="space-y-4">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Valor Disponível para Aporte Hoje (R$)
                   </label>
                   <input
@@ -1474,7 +1474,7 @@ export function InvestmentsHubView() {
                     step="100"
                     value={newContributionBudget}
                     onChange={(e) => setNewContributionBudget(Number(e.target.value) || 0)}
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-base font-bold text-amber-400"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-base font-bold text-slate-800"
                   />
                 </div>
 
@@ -1482,22 +1482,22 @@ export function InvestmentsHubView() {
                   {allocationPlan.suggestions.map((s) => (
                     <div
                       key={s.ticker}
-                      className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/70 p-3"
+                      className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/80 p-3"
                     >
                       <div>
                         <div className="flex items-center gap-2">
-                          <span className="font-mono font-bold text-slate-100">{s.ticker}</span>
+                          <span className="font-mono font-bold text-slate-900">{s.ticker}</span>
                           <Badge tone="gold">Score {s.score}</Badge>
                         </div>
-                        <p className="mt-0.5 text-xs text-slate-400">
-                          Comprar <strong className="text-slate-200">{s.sharesToBuy} cotas</strong>
+                        <p className="mt-0.5 text-xs text-slate-500">
+                          Comprar <strong className="text-slate-800">{s.sharesToBuy} cotas</strong>
                         </p>
                       </div>
                       <div className="text-right">
-                        <p className="font-mono text-sm font-bold text-slate-100 tabular-nums">
+                        <p className="font-mono text-sm font-bold text-slate-900 tabular-nums">
                           {brl(s.cost)}
                         </p>
-                        <p className="font-mono text-[11px] text-emerald-400 tabular-nums">
+                        <p className="font-mono text-[11px] text-emerald-700 tabular-nums">
                           +{brl(s.addedMonthlyIncome)}/mês
                         </p>
                       </div>
@@ -1505,9 +1505,9 @@ export function InvestmentsHubView() {
                   ))}
                 </div>
 
-                <div className="flex justify-between border-t border-slate-800 pt-3 text-xs text-slate-400">
+                <div className="flex justify-between border-t border-slate-200 pt-3 text-xs text-slate-500">
                   <span>Troco / Sobra do aporte:</span>
-                  <span className="font-mono text-slate-200 tabular-nums">
+                  <span className="font-mono text-slate-800 tabular-nums">
                     {brl(allocationPlan.remaining)}
                   </span>
                 </div>
@@ -1521,7 +1521,7 @@ export function InvestmentsHubView() {
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[780px] text-sm">
                   <thead>
-                    <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                    <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                       <th className="pb-2.5 pr-3">Ativo</th>
                       <th className="pb-2.5 pr-3">Nota</th>
                       <th className="pb-2.5 pr-3 text-right">P/VP</th>
@@ -1531,14 +1531,14 @@ export function InvestmentsHubView() {
                       <th className="pb-2.5 text-right">Custo p/ Atingir</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800/60">
+                  <tbody className="divide-y divide-slate-200">
                     {[...enrichedVariable]
                       .sort((a, b) => b.buyScore - a.buyScore)
                       .map((r) => (
-                        <tr key={r.id} className="hover:bg-slate-800/30">
+                        <tr key={r.id} className="hover:bg-slate-50">
                           <td className="py-3 pr-3">
-                            <p className="font-mono font-bold text-slate-100">{r.ticker}</p>
-                            <p className="text-[11px] text-slate-400">
+                            <p className="font-mono font-bold text-slate-900">{r.ticker}</p>
+                            <p className="text-[11px] text-slate-500">
                               {r.quantity} cotas · {brl(r.currentPrice)}
                             </p>
                           </td>
@@ -1558,16 +1558,16 @@ export function InvestmentsHubView() {
                           <td
                             className={`py-3 pr-3 text-right font-mono tabular-nums ${
                               r.pvp && r.pvp < 1
-                                ? "text-emerald-400 font-semibold"
-                                : "text-slate-300"
+                                ? "text-emerald-700 font-semibold"
+                                : "text-slate-700"
                             }`}
                           >
                             {r.pvp ? r.pvp.toFixed(2) : "—"}
                           </td>
-                          <td className="py-3 pr-3 text-right font-mono text-slate-200 tabular-nums">
+                          <td className="py-3 pr-3 text-right font-mono text-slate-800 tabular-nums">
                             {r.monthlyDyPct > 0 ? pct(r.monthlyDyPct, 2) : "—"}
                           </td>
-                          <td className="py-3 pr-3 text-right font-mono text-amber-400 tabular-nums">
+                          <td className="py-3 pr-3 text-right font-mono text-slate-800 tabular-nums">
                             {r.yocPct > 0 ? pct(r.yocPct, 2) : "—"}
                           </td>
                           <td className="py-3 pr-3">
@@ -1577,7 +1577,7 @@ export function InvestmentsHubView() {
                                   <span>
                                     {r.quantity}/{r.magicNumber} cotas
                                   </span>
-                                  <span className="text-slate-400">
+                                  <span className="text-slate-500">
                                     {r.magicMissingShares === 0
                                       ? "Atingido!"
                                       : `faltam ${r.magicMissingShares}`}
@@ -1593,7 +1593,7 @@ export function InvestmentsHubView() {
                               <span className="text-xs text-slate-500">Sem dividendo mensal</span>
                             )}
                           </td>
-                          <td className="py-3 text-right font-mono text-xs text-slate-300 tabular-nums">
+                          <td className="py-3 text-right font-mono text-xs text-slate-700 tabular-nums">
                             {r.magicMissingCost > 0 ? brl(r.magicMissingCost) : "Conquistado"}
                           </td>
                         </tr>
@@ -1622,20 +1622,20 @@ export function InvestmentsHubView() {
         <form onSubmit={handleConfirmTrade} className="space-y-4">
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Operação</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Operação</label>
               <select
                 value={tradeModal.side}
                 onChange={(e) =>
                   setTradeModal({ ...tradeModal, side: e.target.value as "buy" | "sell" })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="buy">Compra (+)</option>
                 <option value="sell">Venda (-)</option>
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Ticker (B3)
               </label>
               <input
@@ -1645,12 +1645,12 @@ export function InvestmentsHubView() {
                 onChange={(e) =>
                   setTradeModal({ ...tradeModal, ticker: e.target.value.toUpperCase() })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm uppercase text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm uppercase text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Classe</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Classe</label>
               <select
                 value={tradeModal.assetType}
                 onChange={(e) =>
@@ -1659,7 +1659,7 @@ export function InvestmentsHubView() {
                     assetType: e.target.value as VariableAssetType,
                   })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="Ação">Ação</option>
                 <option value="FII">FII</option>
@@ -1672,18 +1672,18 @@ export function InvestmentsHubView() {
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Quantidade</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Quantidade</label>
               <input
                 type="text"
                 inputMode="decimal"
                 value={tradeModal.quantity}
                 onChange={(e) => setTradeModal({ ...tradeModal, quantity: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Preço Unitário (R$)
               </label>
               <input
@@ -1692,12 +1692,12 @@ export function InvestmentsHubView() {
                 placeholder="35,50"
                 value={tradeModal.price}
                 onChange={(e) => setTradeModal({ ...tradeModal, price: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Taxas / Corretagem
               </label>
               <input
@@ -1705,38 +1705,38 @@ export function InvestmentsHubView() {
                 inputMode="decimal"
                 value={tradeModal.fees}
                 onChange={(e) => setTradeModal({ ...tradeModal, fees: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Segmento</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Segmento</label>
               <input
                 type="text"
                 value={tradeModal.segment}
                 onChange={(e) => setTradeModal({ ...tradeModal, segment: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">P/VP Atual</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">P/VP Atual</label>
               <input
                 type="text"
                 inputMode="decimal"
                 value={tradeModal.pvp}
                 onChange={(e) => setTradeModal({ ...tradeModal, pvp: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Data Ordem</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Data Ordem</label>
               <input
                 type="date"
                 value={tradeModal.tradeDate}
                 onChange={(e) => setTradeModal({ ...tradeModal, tradeDate: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -1745,13 +1745,13 @@ export function InvestmentsHubView() {
             <button
               type="button"
               onClick={() => setTradeModal({ ...tradeModal, open: false })}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
             >
               Confirmar & Sincronizar
             </button>
@@ -1771,7 +1771,7 @@ export function InvestmentsHubView() {
         <form onSubmit={handleConfirmDividend} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Ticker do Ativo
               </label>
               <input
@@ -1781,12 +1781,12 @@ export function InvestmentsHubView() {
                 onChange={(e) =>
                   setDivModal({ ...divModal, ticker: e.target.value.toUpperCase() })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm uppercase text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm uppercase text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Tipo de Provento
               </label>
               <select
@@ -1797,7 +1797,7 @@ export function InvestmentsHubView() {
                     type: e.target.value as typeof divModal.type,
                   })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="Dividendo">Dividendo (Ações)</option>
                 <option value="JCP">Juros s/ Capital Próprio (JCP)</option>
@@ -1809,7 +1809,7 @@ export function InvestmentsHubView() {
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor Total Recebido (R$)
               </label>
               <input
@@ -1818,12 +1818,12 @@ export function InvestmentsHubView() {
                 placeholder="250,00"
                 value={divModal.amount}
                 onChange={(e) => setDivModal({ ...divModal, amount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-emerald-400"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-emerald-700"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor por Cota (opcional)
               </label>
               <input
@@ -1832,18 +1832,18 @@ export function InvestmentsHubView() {
                 placeholder="0,95"
                 value={divModal.perShare}
                 onChange={(e) => setDivModal({ ...divModal, perShare: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Data do Pagamento
               </label>
               <input
                 type="date"
                 value={divModal.payDate}
                 onChange={(e) => setDivModal({ ...divModal, payDate: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -1852,13 +1852,13 @@ export function InvestmentsHubView() {
             <button
               type="button"
               onClick={() => setDivModal({ ...divModal, open: false })}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-emerald-500 px-5 py-2 text-xs font-semibold text-slate-950 hover:bg-emerald-400"
+              className="rounded-xl bg-emerald-500 px-5 py-2 text-xs font-semibold text-white hover:bg-emerald-400"
             >
               Salvar Rendimento
             </button>
@@ -1877,9 +1877,9 @@ export function InvestmentsHubView() {
         maxWidth="max-w-2xl"
       >
         <form onSubmit={handleSaveManualQuotes} className="space-y-4">
-          <div className="grid grid-cols-3 gap-3 rounded-xl border border-slate-800 bg-slate-950 p-3.5">
+          <div className="grid grid-cols-3 gap-3 rounded-xl border border-slate-200 bg-white p-3.5">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 CDI Anual (%)
               </label>
               <input
@@ -1887,11 +1887,11 @@ export function InvestmentsHubView() {
                 inputMode="decimal"
                 value={manualRates.cdi}
                 onChange={(e) => setManualRates({ ...manualRates, cdi: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-amber-400"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-800"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 SELIC Anual (%)
               </label>
               <input
@@ -1899,11 +1899,11 @@ export function InvestmentsHubView() {
                 inputMode="decimal"
                 value={manualRates.selic}
                 onChange={(e) => setManualRates({ ...manualRates, selic: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-amber-400"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-800"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-400">
+              <label className="mb-1 block text-xs font-medium text-slate-500">
                 IPCA 12m (%)
               </label>
               <input
@@ -1911,7 +1911,7 @@ export function InvestmentsHubView() {
                 inputMode="decimal"
                 value={manualRates.ipca}
                 onChange={(e) => setManualRates({ ...manualRates, ipca: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-sm text-amber-400"
+                className="w-full rounded-lg border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-800"
               />
             </div>
           </div>
@@ -1920,16 +1920,16 @@ export function InvestmentsHubView() {
             {state.variableAssets.map((a) => (
               <div
                 key={a.id}
-                className="flex items-center justify-between rounded-xl border border-slate-800 bg-slate-950/60 px-3.5 py-2"
+                className="flex items-center justify-between rounded-xl border border-slate-200 bg-slate-50/70 px-3.5 py-2"
               >
                 <div>
-                  <span className="font-mono font-bold text-slate-100">{a.ticker}</span>
-                  <span className="ml-2 text-xs text-slate-400">
+                  <span className="font-mono font-bold text-slate-900">{a.ticker}</span>
+                  <span className="ml-2 text-xs text-slate-500">
                     {a.type} · PM {brl(a.averagePrice)}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-slate-400">Cotação R$:</span>
+                  <span className="text-xs text-slate-500">Cotação R$:</span>
                   <input
                     type="text"
                     inputMode="decimal"
@@ -1937,7 +1937,7 @@ export function InvestmentsHubView() {
                     onChange={(e) =>
                       setManualPrices({ ...manualPrices, [a.id]: e.target.value })
                     }
-                    className="w-28 rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-right font-mono text-sm text-slate-100"
+                    className="w-28 rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-right font-mono text-sm text-slate-900"
                   />
                 </div>
               </div>
@@ -1948,13 +1948,13 @@ export function InvestmentsHubView() {
             <button
               type="button"
               onClick={() => setQuotesModalOpen(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
             >
               Salvar Cotações & Taxas
             </button>

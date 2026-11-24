@@ -248,8 +248,8 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                 onClick={() => setViewTab(t.id as typeof viewTab)}
                 className={`rounded-xl px-3.5 py-2 text-xs font-semibold transition ${
                   viewTab === t.id
-                    ? "bg-amber-500 text-slate-950"
-                    : "border border-slate-800 bg-slate-900 text-slate-300 hover:bg-slate-800"
+                    ? "bg-slate-900 text-white"
+                    : "border border-slate-200 bg-white text-slate-700 hover:bg-slate-100"
                 }`}
               >
                 {t.label}
@@ -263,15 +263,15 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
       {viewTab === "orcamento" && (
         <div className="space-y-6">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-medium text-slate-300">
+            <h3 className="text-sm font-medium text-slate-700">
               Competência analisada:{" "}
-              <span className="font-mono text-amber-400">{monthLabel(selectedMonth)}</span>
+              <span className="font-mono text-slate-800">{monthLabel(selectedMonth)}</span>
             </h3>
             <input
               type="month"
               value={selectedMonth}
               onChange={(e) => e.target.value && setSelectedMonth(e.target.value)}
-              className="rounded-xl border border-slate-700 bg-slate-900 px-3 py-1.5 font-mono text-xs text-slate-100"
+              className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 font-mono text-xs text-slate-900"
             />
           </div>
 
@@ -300,7 +300,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                     <th className="pb-3 pr-3">Categoria</th>
                     <th className="pb-3 pr-3 text-right">Orçado</th>
                     <th className="pb-3 pr-3 text-right">Projetado</th>
@@ -308,27 +308,27 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                     <th className="pb-3 pr-3">Consumo do Orçamento</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200">
                   {categoryComparison.map((row) => {
                     const ratio = row.budgeted > 0 ? (row.realized / row.budgeted) * 100 : 0;
                     return (
-                      <tr key={row.category.id} className="hover:bg-slate-800/30">
+                      <tr key={row.category.id} className="hover:bg-slate-50">
                         <td className="py-3.5 pr-3">
                           <div className="flex items-center gap-2">
                             <span
                               className="size-2.5 rounded-full"
                               style={{ backgroundColor: row.category.color }}
                             />
-                            <span className="font-medium text-slate-100">{row.category.name}</span>
+                            <span className="font-medium text-slate-900">{row.category.name}</span>
                           </div>
                         </td>
-                        <td className="py-3.5 pr-3 text-right font-mono text-slate-300 tabular-nums">
+                        <td className="py-3.5 pr-3 text-right font-mono text-slate-700 tabular-nums">
                           {brl(row.budgeted)}
                         </td>
-                        <td className="py-3.5 pr-3 text-right font-mono text-sky-400 tabular-nums">
+                        <td className="py-3.5 pr-3 text-right font-mono text-sky-700 tabular-nums">
                           {brl(row.projected)}
                         </td>
-                        <td className="py-3.5 pr-3 text-right font-mono font-semibold text-slate-100 tabular-nums">
+                        <td className="py-3.5 pr-3 text-right font-mono font-semibold text-slate-900 tabular-nums">
                           {brl(row.realized)}
                         </td>
                         <td className="py-3.5 pr-3">
@@ -336,12 +336,12 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                             <div className="mb-1 flex justify-between font-mono text-xs">
                               <span
                                 className={
-                                  ratio > 100 ? "text-rose-400 font-bold" : "text-slate-300"
+                                  ratio > 100 ? "text-rose-700 font-bold" : "text-slate-700"
                                 }
                               >
                                 {ratio.toFixed(0)}%
                               </span>
-                              <span className="text-slate-400">
+                              <span className="text-slate-500">
                                 {row.budgeted - row.realized >= 0
                                   ? `livre ${brl(row.budgeted - row.realized)}`
                                   : `excedeu ${brl(row.realized - row.budgeted)}`}
@@ -373,7 +373,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
             actions={
               <button
                 onClick={() => setShowAddBudgetModal(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3.5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-3.5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
               >
                 <Plus className="size-3.5" />
                 Nova Linha Orçamentária
@@ -390,7 +390,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                 return (
                   <div
                     key={item.id}
-                    className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                    className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
@@ -399,7 +399,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                             onClick={() =>
                               setExpandedSalaryIds((p) => ({ ...p, [item.id]: !p[item.id] }))
                             }
-                            className="rounded p-1 text-slate-400 hover:bg-slate-800"
+                            className="rounded p-1 text-slate-500 hover:bg-slate-100"
                           >
                             {isExp ? (
                               <ChevronDown className="size-4" />
@@ -410,7 +410,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                         )}
                         <div>
                           <div className="flex items-center gap-2">
-                            <span className="font-semibold text-slate-100">{item.name}</span>
+                            <span className="font-semibold text-slate-900">{item.name}</span>
                             <Badge tone={item.type === "income" ? "positive" : "negative"}>
                               {item.type === "income" ? "Receita" : "Despesa"}
                             </Badge>
@@ -421,9 +421,9 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                             )}
                           </div>
                           {hasDed && (
-                            <p className="mt-0.5 text-xs text-slate-400">
+                            <p className="mt-0.5 text-xs text-slate-500">
                               Bruto: {brl(jan.gross)} → Deduções folha: -{brl(jan.deductions)} →
-                              Líquido inicial: <strong className="text-emerald-400">{brl(jan.net)}</strong>
+                              Líquido inicial: <strong className="text-emerald-700">{brl(jan.net)}</strong>
                             </p>
                           )}
                         </div>
@@ -431,14 +431,14 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
 
                       <div className="flex items-center gap-3">
                         <div className="text-right font-mono">
-                          <span className="text-xs text-slate-400">Jan → Dez: </span>
-                          <span className="text-sm font-bold text-slate-100 tabular-nums">
+                          <span className="text-xs text-slate-500">Jan → Dez: </span>
+                          <span className="text-sm font-bold text-slate-900 tabular-nums">
                             {brl(jan.net)} → {brl(dec.net)}
                           </span>
                         </div>
                         <button
                           onClick={() => removeBudgetItem(item.id)}
-                          className="rounded p-1 text-slate-500 hover:text-rose-400"
+                          className="rounded p-1 text-slate-500 hover:text-rose-700"
                         >
                           <Trash2 className="size-4" />
                         </button>
@@ -446,18 +446,18 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                     </div>
 
                     {hasDed && isExp && (
-                      <div className="mt-3 border-t border-slate-800 pt-3">
-                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-amber-400">
+                      <div className="mt-3 border-t border-slate-200 pt-3">
+                        <p className="mb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-800">
                           Decomposição de Folha (Descontos sobre o Bruto)
                         </p>
                         <div className="grid gap-2 sm:grid-cols-3">
                           {(item.deductions || []).map((d) => (
                             <div
                               key={d.id}
-                              className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900 px-3 py-2 text-xs"
+                              className="flex items-center justify-between rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs"
                             >
-                              <span className="text-slate-300">{d.name}</span>
-                              <span className="font-mono text-rose-400 tabular-nums">
+                              <span className="text-slate-700">{d.name}</span>
+                              <span className="font-mono text-rose-700 tabular-nums">
                                 - {brl(d.amount)}
                               </span>
                             </div>
@@ -478,7 +478,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
             <div className="overflow-x-auto">
               <table className="w-full min-w-[960px] text-xs">
                 <thead>
-                  <tr className="border-b border-slate-800 text-left uppercase text-slate-400">
+                  <tr className="border-b border-slate-200 text-left uppercase text-slate-500">
                     <th className="pb-2.5 pr-3">Linha Orçamentária</th>
                     {MONTHS_SHORT.map((m) => (
                       <th key={m} className="pb-2.5 pr-2 text-right">
@@ -487,10 +487,10 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200">
                   {[...annualGrid.incomes, ...annualGrid.expenses].map((item) => (
-                    <tr key={item.id} className="hover:bg-slate-800/30">
-                      <td className="whitespace-nowrap py-2.5 pr-3 font-medium text-slate-200">
+                    <tr key={item.id} className="hover:bg-slate-50">
+                      <td className="whitespace-nowrap py-2.5 pr-3 font-medium text-slate-800">
                         {item.name}
                       </td>
                       {MONTHS_SHORT.map((_, idx) => {
@@ -499,7 +499,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                           <td
                             key={idx}
                             className={`whitespace-nowrap py-2.5 pr-2 text-right font-mono tabular-nums ${
-                              item.type === "income" ? "text-emerald-400" : "text-slate-300"
+                              item.type === "income" ? "text-emerald-700" : "text-slate-700"
                             }`}
                           >
                             {brl(val)}
@@ -508,13 +508,13 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                       })}
                     </tr>
                   ))}
-                  <tr className="border-t-2 border-slate-700 bg-slate-950/60 font-bold">
-                    <td className="py-3 pr-3 text-slate-100">Saldo Orçado Líquido</td>
+                  <tr className="border-t-2 border-slate-300 bg-slate-50/70 font-bold">
+                    <td className="py-3 pr-3 text-slate-900">Saldo Orçado Líquido</td>
                     {annualGrid.monthlyTotals.map((t) => (
                       <td
                         key={t.monthIndex}
                         className={`whitespace-nowrap py-3 pr-2 text-right font-mono tabular-nums ${
-                          t.net >= 0 ? "text-amber-400" : "text-rose-400"
+                          t.net >= 0 ? "text-slate-800" : "text-rose-700"
                         }`}
                       >
                         {brl(t.net)}
@@ -545,18 +545,18 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                         <stop offset="100%" stopColor="#D4AF37" stopOpacity={0} />
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.12)" />
-                    <XAxis dataKey="label" stroke="#94a3b8" fontSize={11} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="label" stroke="#64748b" fontSize={11} />
                     <YAxis
-                      stroke="#94a3b8"
+                      stroke="#64748b"
                       fontSize={11}
                       tickFormatter={(v) => compactBrl(Number(v))}
                     />
                     <Tooltip
                       formatter={(v: number) => brl(v)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        borderColor: "#334155",
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e2e8f0",
                         borderRadius: 12,
                       }}
                     />
@@ -580,18 +580,18 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
               <div className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={cashflow12m}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="rgba(148,163,184,0.12)" />
-                    <XAxis dataKey="label" stroke="#94a3b8" fontSize={11} />
+                    <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                    <XAxis dataKey="label" stroke="#64748b" fontSize={11} />
                     <YAxis
-                      stroke="#94a3b8"
+                      stroke="#64748b"
                       fontSize={11}
                       tickFormatter={(v) => compactBrl(Number(v))}
                     />
                     <Tooltip
                       formatter={(v: number) => brl(v)}
                       contentStyle={{
-                        backgroundColor: "#0f172a",
-                        borderColor: "#334155",
+                        backgroundColor: "#ffffff",
+                        borderColor: "#e2e8f0",
                         borderRadius: 12,
                       }}
                     />
@@ -616,20 +616,20 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
         <form onSubmit={handleAddBudgetLine} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Tipo</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Tipo</label>
               <select
                 value={bForm.type}
                 onChange={(e) =>
                   setBForm({ ...bForm, type: e.target.value as "income" | "expense" })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="income">Receita</option>
                 <option value="expense">Despesa Fixa / Orçada</option>
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor Base Mensal (R$)
               </label>
               <input
@@ -638,27 +638,27 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                 placeholder="5000,00"
                 value={bForm.baseValue}
                 onChange={(e) => setBForm({ ...bForm, baseValue: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">Descrição</label>
+            <label className="mb-1 block text-xs font-medium text-slate-700">Descrição</label>
             <input
               type="text"
               placeholder="Ex.: Salário Bruto CLT, Condomínio, Escola..."
               value={bForm.name}
               onChange={(e) => setBForm({ ...bForm, name: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Índice de Reajuste
               </label>
               <select
@@ -669,7 +669,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                     adjustType: e.target.value as typeof bForm.adjustType,
                   })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="none">Sem reajuste</option>
                 <option value="ipca">IPCA ({state.settings.ipcaAnnual}%)</option>
@@ -677,7 +677,7 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Mês do Reajuste (1 a 12)
               </label>
               <input
@@ -686,14 +686,14 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
                 max="12"
                 value={bForm.adjustMonth}
                 onChange={(e) => setBForm({ ...bForm, adjustMonth: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
 
           {bForm.type === "income" && (
-            <div className="rounded-xl border border-slate-800 bg-slate-950 p-3">
-              <label className="flex items-center gap-2 text-xs text-slate-200">
+            <div className="rounded-xl border border-slate-200 bg-white p-3">
+              <label className="flex items-center gap-2 text-xs text-slate-800">
                 <input
                   type="checkbox"
                   checked={bForm.hasDeductions}
@@ -708,13 +708,13 @@ export function BudgetCashflowView({ initialMode = "orcamento" }: { initialMode?
             <button
               type="button"
               onClick={() => setShowAddBudgetModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white"
             >
               Salvar Linha
             </button>

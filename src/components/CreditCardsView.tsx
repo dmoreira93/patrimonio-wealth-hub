@@ -227,7 +227,7 @@ export function CreditCardsView() {
         actions={
           <button
             onClick={() => setShowNewCardModal(true)}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow-sm transition hover:bg-amber-400"
+            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-slate-800"
           >
             <Plus className="size-4" />
             Novo Cartão
@@ -241,7 +241,7 @@ export function CreditCardsView() {
           label={`Fatura (${monthLabel(invoiceMonth)})`}
           value={brl(kpis.thisMonthTotal)}
           tone="gold"
-          icon={<Receipt className="size-4 text-amber-400" />}
+          icon={<Receipt className="size-4 text-slate-800" />}
           hint={`${currentInvoiceEntries.length} itens nesta competência`}
         />
         <StatCard
@@ -273,7 +273,7 @@ export function CreditCardsView() {
         >
           <form onSubmit={handleAddPurchase} className="space-y-3.5">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Cartão</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Cartão</label>
               <select
                 value={purchaseForm.cardId || state.creditCards[0]?.id || ""}
                 onChange={(e) => {
@@ -287,7 +287,7 @@ export function CreditCardsView() {
                       : purchaseForm.firstChargeMonth,
                   });
                 }}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
               >
                 {state.creditCards.map((c) => (
                   <option key={c.id} value={c.id}>
@@ -298,7 +298,7 @@ export function CreditCardsView() {
             </div>
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Descrição do Gasto
               </label>
               <input
@@ -308,19 +308,19 @@ export function CreditCardsView() {
                 onChange={(e) =>
                   setPurchaseForm({ ...purchaseForm, description: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Modalidade</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Modalidade</label>
                 <select
                   value={purchaseForm.mode}
                   onChange={(e) =>
                     setPurchaseForm({ ...purchaseForm, mode: e.target.value as PurchaseMode })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                 >
                   <option value="single">À Vista (1x)</option>
                   <option value="installments">Parcelado (Nx)</option>
@@ -328,13 +328,13 @@ export function CreditCardsView() {
                 </select>
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">Categoria</label>
+                <label className="mb-1 block text-xs font-medium text-slate-700">Categoria</label>
                 <select
                   value={purchaseForm.categoryId}
                   onChange={(e) =>
                     setPurchaseForm({ ...purchaseForm, categoryId: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                 >
                   {expenseCategories.map((cat) => (
                     <option key={cat.id} value={cat.id}>
@@ -347,7 +347,7 @@ export function CreditCardsView() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">
+                <label className="mb-1 block text-xs font-medium text-slate-700">
                   {purchaseForm.mode === "installments"
                     ? "Valor Total da Compra (R$)"
                     : purchaseForm.mode === "recurring"
@@ -362,11 +362,11 @@ export function CreditCardsView() {
                   onChange={(e) =>
                     setPurchaseForm({ ...purchaseForm, totalAmount: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                 />
               </div>
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">
+                <label className="mb-1 block text-xs font-medium text-slate-700">
                   Data da Compra
                 </label>
                 <input
@@ -385,7 +385,7 @@ export function CreditCardsView() {
                         : purchaseForm.firstChargeMonth,
                     });
                   }}
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                 />
               </div>
             </div>
@@ -393,7 +393,7 @@ export function CreditCardsView() {
             {purchaseForm.mode === "installments" && (
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Total de Parcelas
                   </label>
                   <input
@@ -404,11 +404,11 @@ export function CreditCardsView() {
                     onChange={(e) =>
                       setPurchaseForm({ ...purchaseForm, installmentsTotal: e.target.value })
                     }
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="mb-1 block text-xs font-medium text-slate-300">
+                  <label className="mb-1 block text-xs font-medium text-slate-700">
                     Iniciar na Parcela #
                   </label>
                   <input
@@ -419,7 +419,7 @@ export function CreditCardsView() {
                     onChange={(e) =>
                       setPurchaseForm({ ...purchaseForm, currentInstallment: e.target.value })
                     }
-                    className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                    className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                   />
                 </div>
               </div>
@@ -427,7 +427,7 @@ export function CreditCardsView() {
 
             {purchaseForm.mode === "recurring" && (
               <div>
-                <label className="mb-1 block text-xs font-medium text-slate-300">
+                <label className="mb-1 block text-xs font-medium text-slate-700">
                   Projetar por quantos meses?
                 </label>
                 <input
@@ -438,13 +438,13 @@ export function CreditCardsView() {
                   onChange={(e) =>
                     setPurchaseForm({ ...purchaseForm, installmentsTotal: e.target.value })
                   }
-                  className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
                 />
               </div>
             )}
 
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Fatura da 1ª Cobrança
               </label>
               <input
@@ -453,19 +453,19 @@ export function CreditCardsView() {
                 onChange={(e) =>
                   setPurchaseForm({ ...purchaseForm, firstChargeMonth: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100 focus:border-amber-400 focus:outline-none"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900 focus:border-amber-400 focus:outline-none"
               />
             </div>
 
             {installmentPreview && (
-              <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-200">
+              <div className="rounded-xl border border-slate-200 bg-slate-100 p-3 text-xs text-slate-700">
                 {installmentPreview}
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full rounded-xl bg-amber-500 py-2.5 text-sm font-semibold text-slate-950 shadow transition hover:bg-amber-400"
+              className="w-full rounded-xl bg-slate-900 text-white py-2.5 text-sm font-semibold text-white shadow transition hover:bg-slate-800"
             >
               Lançar na Fatura
             </button>
@@ -481,7 +481,7 @@ export function CreditCardsView() {
               <select
                 value={selectedCardFilter}
                 onChange={(e) => setSelectedCardFilter(e.target.value)}
-                className="rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 text-xs text-slate-200"
+                className="rounded-xl border border-slate-300 bg-white px-3 py-1.5 text-xs text-slate-800"
               >
                 <option value="all">Todos os Cartões</option>
                 {state.creditCards.map((c) => (
@@ -491,20 +491,20 @@ export function CreditCardsView() {
                 ))}
               </select>
 
-              <div className="flex items-center rounded-xl border border-slate-700 bg-slate-950 p-0.5">
+              <div className="flex items-center rounded-xl border border-slate-300 bg-white p-0.5">
                 <button
                   onClick={() => setInvoiceMonth(addMonthsIso(invoiceMonth, -1))}
-                  className="rounded-lg p-1.5 text-slate-300 hover:bg-slate-800"
+                  className="rounded-lg p-1.5 text-slate-700 hover:bg-slate-100"
                   title="Mês anterior"
                 >
                   <ChevronLeft className="size-4" />
                 </button>
-                <span className="px-3 font-mono text-xs font-semibold text-amber-400">
+                <span className="px-3 font-mono text-xs font-semibold text-slate-800">
                   {monthLabel(invoiceMonth)}
                 </span>
                 <button
                   onClick={() => setInvoiceMonth(addMonthsIso(invoiceMonth, 1))}
-                  className="rounded-lg p-1.5 text-slate-300 hover:bg-slate-800"
+                  className="rounded-lg p-1.5 text-slate-700 hover:bg-slate-100"
                   title="Próximo mês"
                 >
                   <ChevronRight className="size-4" />
@@ -527,21 +527,21 @@ export function CreditCardsView() {
               return (
                 <div
                   key={card.id}
-                  className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                  className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                 >
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <div className="flex items-center gap-2">
-                        <CreditCardIcon className="size-4 text-amber-400" />
-                        <span className="text-sm font-bold text-slate-100">{card.name}</span>
+                        <CreditCardIcon className="size-4 text-slate-800" />
+                        <span className="text-sm font-bold text-slate-900">{card.name}</span>
                       </div>
-                      <p className="mt-0.5 text-[11px] text-slate-400">
+                      <p className="mt-0.5 text-[11px] text-slate-500">
                         {card.brand} · Fecha dia {card.closingDay} · Vence dia {card.dueDay}
                       </p>
                     </div>
                     <button
                       onClick={() => removeCreditCard(card.id)}
-                      className="rounded p-1 text-slate-500 hover:text-rose-400"
+                      className="rounded p-1 text-slate-500 hover:text-rose-700"
                       title="Excluir cartão"
                     >
                       <Trash2 className="size-3.5" />
@@ -550,10 +550,10 @@ export function CreditCardsView() {
 
                   <div className="mt-3 flex items-baseline justify-between">
                     <div>
-                      <span className="text-[11px] uppercase text-slate-400">
+                      <span className="text-[11px] uppercase text-slate-500">
                         Fatura {monthLabel(invoiceMonth)}
                       </span>
-                      <p className="font-mono text-lg font-bold text-slate-100 tabular-nums">
+                      <p className="font-mono text-lg font-bold text-slate-900 tabular-nums">
                         {brl(cardMonthSum)}
                       </p>
                     </div>
@@ -566,7 +566,7 @@ export function CreditCardsView() {
                         ) : (
                           <button
                             onClick={() => payCardInvoiceMonth(card.id, invoiceMonth)}
-                            className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30"
+                            className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 border border-emerald-200 hover:bg-emerald-500/30"
                           >
                             <CheckCircle2 className="size-3.5" />
                             Baixar Fatura
@@ -578,7 +578,7 @@ export function CreditCardsView() {
 
                   <div className="mt-3">
                     <ProgressBar pct={usedPct} tone="purple" height="h-1.5" />
-                    <div className="mt-1 flex justify-between text-[11px] text-slate-400">
+                    <div className="mt-1 flex justify-between text-[11px] text-slate-500">
                       <span>Limite tomado: {brl(usedLimit)}</span>
                       <span>Livre: {brl(Math.max(0, card.limitAmount - usedLimit))}</span>
                     </div>
@@ -598,7 +598,7 @@ export function CreditCardsView() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                  <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                     <th className="pb-2.5 pr-3">Data Compra</th>
                     <th className="pb-2.5 pr-3">Descrição & Parcela</th>
                     <th className="pb-2.5 pr-3">Cartão</th>
@@ -607,35 +607,35 @@ export function CreditCardsView() {
                     <th className="pb-2.5 text-right">Ação</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200">
                   {currentInvoiceEntries.map((item) => {
                     const card = state.creditCards.find((c) => c.id === item.cardId);
                     const cat = state.categories.find((c) => c.id === item.categoryId);
                     return (
                       <tr
                         key={`${item.purchaseId}_${item.installmentNumber}`}
-                        className="hover:bg-slate-800/30"
+                        className="hover:bg-slate-50"
                       >
-                        <td className="py-3 pr-3 font-mono text-xs text-slate-400">
+                        <td className="py-3 pr-3 font-mono text-xs text-slate-500">
                           {formatDate(item.purchaseDate)}
                         </td>
                         <td className="py-3 pr-3">
                           <div className="flex items-center gap-2">
-                            <span className="font-medium text-slate-100">{item.description}</span>
+                            <span className="font-medium text-slate-900">{item.description}</span>
                             {item.isPaid && <Badge tone="positive">Pago</Badge>}
                           </div>
                         </td>
-                        <td className="py-3 pr-3 text-xs text-slate-300">{card?.name ?? "—"}</td>
-                        <td className="py-3 pr-3 text-xs text-slate-400">
+                        <td className="py-3 pr-3 text-xs text-slate-700">{card?.name ?? "—"}</td>
+                        <td className="py-3 pr-3 text-xs text-slate-500">
                           {cat?.name ?? "Cartão"}
                         </td>
-                        <td className="py-3 pr-3 text-right font-mono font-semibold text-slate-100 tabular-nums">
+                        <td className="py-3 pr-3 text-right font-mono font-semibold text-slate-900 tabular-nums">
                           {brl(item.amount)}
                         </td>
                         <td className="py-3 text-right">
                           <button
                             onClick={() => removeCardPurchase(item.purchaseId)}
-                            className="rounded p-1.5 text-slate-400 hover:bg-rose-500/15 hover:text-rose-400"
+                            className="rounded p-1.5 text-slate-500 hover:bg-rose-500/15 hover:text-rose-700"
                             title="Excluir compra e todas as suas parcelas"
                           >
                             <Trash2 className="size-4" />
@@ -659,14 +659,14 @@ export function CreditCardsView() {
         <div className="overflow-x-auto">
           <table className="w-full min-w-[900px] text-sm">
             <thead>
-              <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+              <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                 <th className="pb-3 pr-4">Cartão</th>
                 {projectionMonths.map((m) => (
                   <th
                     key={m}
                     onClick={() => setInvoiceMonth(m)}
-                    className={`cursor-pointer pb-3 pr-3 text-right transition hover:text-amber-400 ${
-                      m === invoiceMonth ? "text-amber-400 underline" : ""
+                    className={`cursor-pointer pb-3 pr-3 text-right transition hover:text-slate-800 ${
+                      m === invoiceMonth ? "text-slate-800 underline" : ""
                     }`}
                   >
                     {monthLabel(m)}
@@ -674,10 +674,10 @@ export function CreditCardsView() {
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60">
+            <tbody className="divide-y divide-slate-200">
               {state.creditCards.map((card) => (
-                <tr key={card.id} className="hover:bg-slate-800/30">
-                  <td className="whitespace-nowrap py-3 pr-4 font-medium text-slate-200">
+                <tr key={card.id} className="hover:bg-slate-50">
+                  <td className="whitespace-nowrap py-3 pr-4 font-medium text-slate-800">
                     {card.name}
                   </td>
                   {projectionMonths.map((m) => {
@@ -688,7 +688,7 @@ export function CreditCardsView() {
                       <td
                         key={m}
                         onClick={() => setInvoiceMonth(m)}
-                        className="cursor-pointer whitespace-nowrap py-3 pr-3 text-right font-mono text-xs tabular-nums text-slate-300 hover:text-amber-300"
+                        className="cursor-pointer whitespace-nowrap py-3 pr-3 text-right font-mono text-xs tabular-nums text-slate-700 hover:text-slate-700"
                       >
                         {val > 0 ? brl(val) : "—"}
                       </td>
@@ -696,8 +696,8 @@ export function CreditCardsView() {
                   })}
                 </tr>
               ))}
-              <tr className="border-t-2 border-slate-700 bg-slate-950/50 font-bold">
-                <td className="py-3 pr-4 text-slate-100">Total Faturas</td>
+              <tr className="border-t-2 border-slate-300 bg-slate-50 font-bold">
+                <td className="py-3 pr-4 text-slate-900">Total Faturas</td>
                 {projectionMonths.map((m) => {
                   const totalM = allExpandedEntries
                     .filter((e) => e.month === m)
@@ -705,7 +705,7 @@ export function CreditCardsView() {
                   return (
                     <td
                       key={m}
-                      className="whitespace-nowrap py-3 pr-3 text-right font-mono text-xs text-amber-400 tabular-nums"
+                      className="whitespace-nowrap py-3 pr-3 text-right font-mono text-xs text-slate-800 tabular-nums"
                     >
                       {totalM > 0 ? brl(totalM) : "—"}
                     </td>
@@ -726,7 +726,7 @@ export function CreditCardsView() {
       >
         <form onSubmit={handleCreateCard} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">
+            <label className="mb-1 block text-xs font-medium text-slate-700">
               Nome do Cartão
             </label>
             <input
@@ -734,24 +734,24 @@ export function CreditCardsView() {
               placeholder="Ex.: Itaú Personnalité Black"
               value={cardForm.name}
               onChange={(e) => setCardForm({ ...cardForm, name: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Bandeira / Emissor
               </label>
               <input
                 type="text"
                 value={cardForm.brand}
                 onChange={(e) => setCardForm({ ...cardForm, brand: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Limite Total (R$)
               </label>
               <input
@@ -759,13 +759,13 @@ export function CreditCardsView() {
                 inputMode="decimal"
                 value={cardForm.limitAmount}
                 onChange={(e) => setCardForm({ ...cardForm, limitAmount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Dia de Fechamento
               </label>
               <input
@@ -774,11 +774,11 @@ export function CreditCardsView() {
                 max="31"
                 value={cardForm.closingDay}
                 onChange={(e) => setCardForm({ ...cardForm, closingDay: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Dia de Vencimento
               </label>
               <input
@@ -787,7 +787,7 @@ export function CreditCardsView() {
                 max="31"
                 value={cardForm.dueDay}
                 onChange={(e) => setCardForm({ ...cardForm, dueDay: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -795,13 +795,13 @@ export function CreditCardsView() {
             <button
               type="button"
               onClick={() => setShowNewCardModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs font-medium text-slate-300 hover:bg-slate-800"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs font-medium text-slate-700 hover:bg-slate-100"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
             >
               Salvar Cartão
             </button>

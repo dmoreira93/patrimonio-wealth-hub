@@ -155,8 +155,8 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
               onClick={() => setTab("alugueis")}
               className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
                 tab === "alugueis"
-                  ? "bg-amber-500 text-slate-950"
-                  : "border border-slate-800 bg-slate-900 text-slate-300"
+                  ? "bg-slate-900 text-white"
+                  : "border border-slate-200 bg-white text-slate-700"
               }`}
             >
               Contratos de Aluguel
@@ -165,8 +165,8 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
               onClick={() => setTab("metas")}
               className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
                 tab === "metas"
-                  ? "bg-amber-500 text-slate-950"
-                  : "border border-slate-800 bg-slate-900 text-slate-300"
+                  ? "bg-slate-900 text-white"
+                  : "border border-slate-200 bg-white text-slate-700"
               }`}
             >
               Metas Financeiras
@@ -207,7 +207,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
             actions={
               <button
                 onClick={() => setShowNewRentalModal(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3.5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-3.5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
               >
                 <Plus className="size-3.5" />
                 Novo Contrato
@@ -231,53 +231,53 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                   return (
                     <div
                       key={r.id}
-                      className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                      className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <div className="flex items-center gap-2">
-                            <Building className="size-4 text-amber-400" />
-                            <h3 className="font-bold text-slate-100">{r.propertyName}</h3>
+                            <Building className="size-4 text-slate-800" />
+                            <h3 className="font-bold text-slate-900">{r.propertyName}</h3>
                             <Badge tone={r.role === "landlord" ? "positive" : "negative"}>
                               {r.role === "landlord" ? "Recebo (Locador)" : "Pago (Locatário)"}
                             </Badge>
                           </div>
-                          <p className="mt-1 text-xs text-slate-400">
+                          <p className="mt-1 text-xs text-slate-500">
                             Contraparte: {r.counterpart} · Vence dia {r.dueDay} · Índice{" "}
                             {r.adjustmentIndex}
                           </p>
                         </div>
                         <button
                           onClick={() => removeRental(r.id)}
-                          className="rounded p-1 text-slate-500 hover:text-rose-400"
+                          className="rounded p-1 text-slate-500 hover:text-rose-700"
                         >
                           <Trash2 className="size-4" />
                         </button>
                       </div>
 
-                      <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-slate-800/80 bg-slate-900/70 p-3 text-xs">
+                      <div className="mt-4 grid grid-cols-3 gap-2 rounded-xl border border-slate-200 bg-slate-50 p-3 text-xs">
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">
+                          <span className="text-[10px] uppercase text-slate-500">
                             Aluguel Mensal
                           </span>
-                          <p className="font-mono text-sm font-bold text-slate-100 tabular-nums">
+                          <p className="font-mono text-sm font-bold text-slate-900 tabular-nums">
                             {brl(r.monthlyAmount)}
                           </p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">
+                          <span className="text-[10px] uppercase text-slate-500">
                             FCI ({r.fciPercent}%)
                           </span>
-                          <p className="font-mono text-sm font-semibold text-sky-400 tabular-nums">
+                          <p className="font-mono text-sm font-semibold text-sky-700 tabular-nums">
                             {brl(fciMonthly)}/mês
                           </p>
-                          <p className="text-[10px] text-slate-400">Acum: {brl(fciAccum)}</p>
+                          <p className="text-[10px] text-slate-500">Acum: {brl(fciAccum)}</p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">
+                          <span className="text-[10px] uppercase text-slate-500">
                             Caução Corrigida
                           </span>
-                          <p className="font-mono text-sm font-semibold text-amber-400 tabular-nums">
+                          <p className="font-mono text-sm font-semibold text-slate-800 tabular-nums">
                             {brl(correctedDeposit)}
                           </p>
                         </div>
@@ -286,7 +286,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                       <div className="mt-3 flex flex-wrap gap-2">
                         <button
                           onClick={() => registerRentalMonth(r.id, currentMonthIso())}
-                          className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/20 px-3 py-1.5 text-xs font-semibold text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30"
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 border border-emerald-200 hover:bg-emerald-500/30"
                         >
                           <CheckCircle2 className="size-3.5" />
                           Lançar Aluguel deste Mês
@@ -307,7 +307,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                               renewRentalContract(r.id, num, todayIso());
                             }
                           }}
-                          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-xs text-slate-200 hover:bg-slate-700"
+                          className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-slate-100 px-3 py-1.5 text-xs text-slate-800 hover:bg-slate-200"
                         >
                           <RefreshCw className="size-3.5" />
                           Aplicar Reajuste Anual
@@ -328,7 +328,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
             actions={
               <button
                 onClick={() => setShowNewGoalModal(true)}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-amber-500 px-3.5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 text-white px-3.5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
               >
                 <Plus className="size-3.5" />
                 Nova Meta
@@ -341,26 +341,26 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                 return (
                   <div
                     key={g.id}
-                    className="rounded-xl border border-slate-800 bg-slate-950/75 p-4"
+                    className="rounded-xl border border-slate-200 bg-slate-50/80 p-4"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <Badge tone="gold">{g.category}</Badge>
-                        <h3 className="mt-1.5 font-bold text-slate-100">{g.name}</h3>
+                        <h3 className="mt-1.5 font-bold text-slate-900">{g.name}</h3>
                       </div>
                       <button
                         onClick={() => removeGoal(g.id)}
-                        className="text-slate-500 hover:text-rose-400"
+                        className="text-slate-500 hover:text-rose-700"
                       >
                         <Trash2 className="size-4" />
                       </button>
                     </div>
 
                     <div className="mt-4 flex items-baseline justify-between">
-                      <span className="font-mono text-lg font-bold text-amber-400 tabular-nums">
+                      <span className="font-mono text-lg font-bold text-slate-800 tabular-nums">
                         {brl(g.currentAmount)}
                       </span>
-                      <span className="font-mono text-xs text-slate-400 tabular-nums">
+                      <span className="font-mono text-xs text-slate-500 tabular-nums">
                         de {brl(g.targetAmount)} ({pct(progress, 0)})
                       </span>
                     </div>
@@ -370,7 +370,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                     </div>
 
                     <div className="mt-4 flex items-center justify-between">
-                      <span className="text-[11px] text-slate-400">
+                      <span className="text-[11px] text-slate-500">
                         {g.targetDate ? `Alvo: ${formatDate(g.targetDate)}` : "Sem prazo fixo"}
                       </span>
                       <button
@@ -380,7 +380,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                           const val = Number(raw.replace(",", "."));
                           if (Number.isFinite(val) && val > 0) contributeToGoal(g.id, val);
                         }}
-                        className="rounded-lg border border-amber-500/40 bg-amber-500/15 px-3 py-1 text-xs font-semibold text-amber-300 hover:bg-amber-500/25"
+                        className="rounded-lg border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-700 hover:bg-amber-500/25"
                       >
                         + Registrar Aporte
                       </button>
@@ -401,19 +401,19 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
       >
         <form onSubmit={handleCreateRental} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">Imóvel</label>
+            <label className="mb-1 block text-xs font-medium text-slate-700">Imóvel</label>
             <input
               type="text"
               placeholder="Ex.: Apartamento Jardins / Studio Pinheiros"
               value={rentalForm.propertyName}
               onChange={(e) => setRentalForm({ ...rentalForm, propertyName: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Posição</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Posição</label>
               <select
                 value={rentalForm.role}
                 onChange={(e) =>
@@ -422,25 +422,25 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                     role: e.target.value as "landlord" | "tenant",
                   })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="landlord">Recebo (Locador)</option>
                 <option value="tenant">Pago (Locatário)</option>
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Contraparte</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Contraparte</label>
               <input
                 type="text"
                 value={rentalForm.counterpart}
                 onChange={(e) => setRentalForm({ ...rentalForm, counterpart: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               />
             </div>
           </div>
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Aluguel Mensal (R$)
               </label>
               <input
@@ -448,28 +448,28 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                 inputMode="decimal"
                 value={rentalForm.monthlyAmount}
                 onChange={(e) => setRentalForm({ ...rentalForm, monthlyAmount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">FCI (%)</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">FCI (%)</label>
               <input
                 type="text"
                 inputMode="decimal"
                 value={rentalForm.fciPercent}
                 onChange={(e) => setRentalForm({ ...rentalForm, fciPercent: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Caução (R$)</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Caução (R$)</label>
               <input
                 type="text"
                 inputMode="decimal"
                 value={rentalForm.depositAmount}
                 onChange={(e) => setRentalForm({ ...rentalForm, depositAmount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -477,13 +477,13 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
             <button
               type="button"
               onClick={() => setShowNewRentalModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white"
             >
               Salvar Contrato
             </button>
@@ -499,19 +499,19 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
       >
         <form onSubmit={handleCreateGoal} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">Nome da Meta</label>
+            <label className="mb-1 block text-xs font-medium text-slate-700">Nome da Meta</label>
             <input
               type="text"
               placeholder="Ex.: Reserva de Emergência, Troca de Carro..."
               value={goalForm.name}
               onChange={(e) => setGoalForm({ ...goalForm, name: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor Alvo (R$)
               </label>
               <input
@@ -519,12 +519,12 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                 inputMode="decimal"
                 value={goalForm.targetAmount}
                 onChange={(e) => setGoalForm({ ...goalForm, targetAmount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Já Acumulado (R$)
               </label>
               <input
@@ -532,7 +532,7 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
                 inputMode="decimal"
                 value={goalForm.currentAmount}
                 onChange={(e) => setGoalForm({ ...goalForm, currentAmount: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
@@ -540,13 +540,13 @@ export function RentalsGoalsView({ initialMode = "alugueis" }: { initialMode?: "
             <button
               type="button"
               onClick={() => setShowNewGoalModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white"
             >
               Salvar Meta
             </button>

@@ -184,7 +184,7 @@ export function DebtsLoansView() {
         actions={
           <button
             onClick={() => setShowNewDebtModal(true)}
-            className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-4 py-2 text-xs font-semibold text-slate-950 shadow transition hover:bg-amber-400"
+            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 text-white px-4 py-2 text-xs font-semibold text-white shadow transition hover:bg-slate-800"
           >
             <Plus className="size-4" />
             Novo Financiamento / Empréstimo
@@ -198,7 +198,7 @@ export function DebtsLoansView() {
           label="Saldo Devedor (Principal)"
           value={brl(globalKpis.totalPrincipalOpen)}
           tone="negative"
-          icon={<Landmark className="size-4 text-rose-400" />}
+          icon={<Landmark className="size-4 text-rose-700" />}
           hint="Capital líquido restante para quitação"
         />
         <StatCard
@@ -217,7 +217,7 @@ export function DebtsLoansView() {
           label="Economia em Antecipações"
           value={brl(globalKpis.totalSavedDiscounts)}
           tone="sky"
-          icon={<Sparkles className="size-4 text-sky-400" />}
+          icon={<Sparkles className="size-4 text-sky-700" />}
           hint="Juros economizados com amortizações"
         />
       </div>
@@ -246,17 +246,17 @@ export function DebtsLoansView() {
                       }}
                       className={`cursor-pointer rounded-xl border p-4 transition ${
                         isSelected
-                          ? "border-amber-500/60 bg-amber-500/10"
-                          : "border-slate-800 bg-slate-950/70 hover:border-slate-700"
+                          ? "border-slate-900 bg-slate-100/80"
+                          : "border-slate-200 bg-slate-50/80 hover:border-slate-300"
                       }`}
                     >
                       <div className="flex items-start justify-between gap-2">
                         <div>
                           <div className="flex items-center gap-2">
-                            <h3 className="text-sm font-bold text-slate-100">{debt.name}</h3>
+                            <h3 className="text-sm font-bold text-slate-900">{debt.name}</h3>
                             <Badge tone="neutral">{debt.amortizationSystem.toUpperCase()}</Badge>
                           </div>
-                          <p className="mt-0.5 text-xs text-slate-400">
+                          <p className="mt-0.5 text-xs text-slate-500">
                             {debt.lender} · {pct(debt.interestRateMonthly, 2)} a.m. · Vence dia{" "}
                             {debt.dueDay}
                           </p>
@@ -266,7 +266,7 @@ export function DebtsLoansView() {
                             e.stopPropagation();
                             removeDebt(debt.id);
                           }}
-                          className="rounded p-1 text-slate-500 hover:text-rose-400"
+                          className="rounded p-1 text-slate-500 hover:text-rose-700"
                           title="Excluir contrato"
                         >
                           <Trash2 className="size-3.5" />
@@ -275,20 +275,20 @@ export function DebtsLoansView() {
 
                       <div className="mt-3 grid grid-cols-3 gap-2 text-xs">
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Parcela</span>
-                          <p className="font-mono font-semibold text-slate-200 tabular-nums">
+                          <span className="text-[10px] uppercase text-slate-500">Parcela</span>
+                          <p className="font-mono font-semibold text-slate-800 tabular-nums">
                             {brl(summary.currentInstallmentValue)}
                           </p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Pagas</span>
-                          <p className="font-mono font-semibold text-emerald-400 tabular-nums">
+                          <span className="text-[10px] uppercase text-slate-500">Pagas</span>
+                          <p className="font-mono font-semibold text-emerald-700 tabular-nums">
                             {summary.paidCount}/{summary.totalCount}
                           </p>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase text-slate-400">Saldo</span>
-                          <p className="font-mono font-bold text-rose-400 tabular-nums">
+                          <span className="text-[10px] uppercase text-slate-500">Saldo</span>
+                          <p className="font-mono font-bold text-rose-700 tabular-nums">
                             {brl(summary.outstandingPrincipal)}
                           </p>
                         </div>
@@ -299,8 +299,8 @@ export function DebtsLoansView() {
                       </div>
 
                       {summary.nextOpen && (
-                        <div className="mt-3 flex items-center justify-between border-t border-slate-800/80 pt-2.5">
-                          <span className="text-[11px] text-slate-400">
+                        <div className="mt-3 flex items-center justify-between border-t border-slate-200 pt-2.5">
+                          <span className="text-[11px] text-slate-500">
                             Próxima: #{summary.nextOpen.n} ({monthLabel(summary.nextOpen.month)})
                           </span>
                           <button
@@ -315,7 +315,7 @@ export function DebtsLoansView() {
                                 false,
                               );
                             }}
-                            className="inline-flex items-center gap-1 rounded-lg bg-emerald-500/20 px-2.5 py-1 text-xs font-semibold text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30"
+                            className="inline-flex items-center gap-1 rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-800 border border-emerald-200 hover:bg-emerald-500/30"
                           >
                             <Check className="size-3" />
                             Baixar #{summary.nextOpen.n}
@@ -336,40 +336,40 @@ export function DebtsLoansView() {
               subtitle="Marque checkboxes na tabela ao lado (ex.: últimas parcelas) para amortizar sem juros"
             >
               {pickedForPrepay.length === 0 ? (
-                <p className="text-xs text-slate-400">
+                <p className="text-xs text-slate-500">
                   Selecione uma ou mais parcelas em aberto na tabela ao lado para simular e
                   registrar uma antecipação com desconto.
                 </p>
               ) : (
                 <div className="space-y-3.5">
-                  <div className="grid grid-cols-2 gap-2.5 rounded-xl border border-slate-800 bg-slate-950 p-3">
+                  <div className="grid grid-cols-2 gap-2.5 rounded-xl border border-slate-200 bg-white p-3">
                     <div>
-                      <span className="text-[10px] uppercase text-slate-400">
+                      <span className="text-[10px] uppercase text-slate-500">
                         Parcelas ({pickedForPrepay.length})
                       </span>
-                      <p className="font-mono text-xs font-bold text-slate-200">
+                      <p className="font-mono text-xs font-bold text-slate-800">
                         #{pickedForPrepay.join(", #")}
                       </p>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-slate-400">Valor de Face</span>
-                      <p className="font-mono text-xs text-slate-300 tabular-nums">
+                      <span className="text-[10px] uppercase text-slate-500">Valor de Face</span>
+                      <p className="font-mono text-xs text-slate-700 tabular-nums">
                         {brl(prepayMetrics?.faceTotal)}
                       </p>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-slate-400">
+                      <span className="text-[10px] uppercase text-slate-500">
                         Principal Puro
                       </span>
-                      <p className="font-mono text-xs text-sky-400 tabular-nums">
+                      <p className="font-mono text-xs text-sky-700 tabular-nums">
                         {brl(prepayMetrics?.principalTotal)}
                       </p>
                     </div>
                     <div>
-                      <span className="text-[10px] uppercase text-slate-400">
+                      <span className="text-[10px] uppercase text-slate-500">
                         Desconto / Economia
                       </span>
-                      <p className="font-mono text-xs font-bold text-emerald-400 tabular-nums">
+                      <p className="font-mono text-xs font-bold text-emerald-700 tabular-nums">
                         {brl(prepayMetrics?.discount)}
                       </p>
                     </div>
@@ -377,7 +377,7 @@ export function DebtsLoansView() {
 
                   <div className="grid grid-cols-2 gap-3">
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-300">
+                      <label className="mb-1 block text-xs font-medium text-slate-700">
                         Valor Efetivo Pago (R$)
                       </label>
                       <input
@@ -385,18 +385,18 @@ export function DebtsLoansView() {
                         inputMode="decimal"
                         value={prepayTotalPaid}
                         onChange={(e) => setPrepayTotalPaid(e.target.value)}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 font-mono text-sm text-emerald-400"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-emerald-700"
                       />
                     </div>
                     <div>
-                      <label className="mb-1 block text-xs font-medium text-slate-300">
+                      <label className="mb-1 block text-xs font-medium text-slate-700">
                         Data da Quitação
                       </label>
                       <input
                         type="date"
                         value={prepayDate}
                         onChange={(e) => setPrepayDate(e.target.value)}
-                        className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-1.5 font-mono text-sm text-slate-100"
+                        className="w-full rounded-xl border border-slate-300 bg-white px-3 py-1.5 font-mono text-sm text-slate-900"
                       />
                     </div>
                   </div>
@@ -404,13 +404,13 @@ export function DebtsLoansView() {
                   <div className="flex gap-2">
                     <button
                       onClick={handleConfirmPrepay}
-                      className="flex-1 rounded-xl bg-emerald-500 py-2 text-xs font-semibold text-slate-950 hover:bg-emerald-400"
+                      className="flex-1 rounded-xl bg-emerald-500 py-2 text-xs font-semibold text-white hover:bg-emerald-400"
                     >
                       Confirmar Antecipação
                     </button>
                     <button
                       onClick={() => setPickedForPrepay([])}
-                      className="rounded-xl border border-slate-700 px-3 py-2 text-xs text-slate-300"
+                      className="rounded-xl border border-slate-300 px-3 py-2 text-xs text-slate-700"
                     >
                       Limpar
                     </button>
@@ -429,8 +429,8 @@ export function DebtsLoansView() {
           >
             <div className="max-h-[620px] overflow-auto">
               <table className="w-full min-w-[760px] text-sm">
-                <thead className="sticky top-0 z-10 bg-slate-900">
-                  <tr className="border-b border-slate-800 text-left text-[11px] uppercase tracking-wider text-slate-400">
+                <thead className="sticky top-0 z-10 bg-white">
+                  <tr className="border-b border-slate-200 text-left text-[11px] uppercase tracking-wider text-slate-500">
                     <th className="pb-3 pr-2">Antecipar</th>
                     <th className="pb-3 pr-2">#</th>
                     <th className="pb-3 pr-3">Vencimento</th>
@@ -441,7 +441,7 @@ export function DebtsLoansView() {
                     <th className="pb-3 text-right">Status / Baixa</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-800/60">
+                <tbody className="divide-y divide-slate-200">
                   {activeEntry.summary.schedule.map((row) => {
                     const isSettlingThis = settlingRow === row.n;
                     return (
@@ -449,19 +449,19 @@ export function DebtsLoansView() {
                         key={row.n}
                         className={`transition ${
                           row.isPaid
-                            ? "bg-emerald-950/10 text-slate-400"
-                            : "hover:bg-slate-800/35"
+                            ? "bg-emerald-50/40 text-slate-500"
+                            : "hover:bg-slate-50"
                         }`}
                       >
                         <td className="py-2.5 pr-2">
                           {row.isPaid ? (
-                            <CheckCircle2 className="size-4 text-emerald-400" />
+                            <CheckCircle2 className="size-4 text-emerald-700" />
                           ) : (
                             <input
                               type="checkbox"
                               checked={pickedForPrepay.includes(row.n)}
                               onChange={() => togglePickPrepay(row.n, row.principalAmortized)}
-                              className="size-4 rounded border-slate-700 bg-slate-900 accent-amber-500"
+                              className="size-4 rounded border-slate-300 bg-white accent-amber-500"
                             />
                           )}
                         </td>
@@ -471,7 +471,7 @@ export function DebtsLoansView() {
                         <td className="py-2.5 pr-3 font-mono text-xs">
                           {monthLabel(row.month)}
                           {row.isPaid && row.paidDate && (
-                            <span className="ml-2 text-[11px] text-emerald-400">
+                            <span className="ml-2 text-[11px] text-emerald-700">
                               (pago {formatDate(row.paidDate)})
                             </span>
                           )}
@@ -479,10 +479,10 @@ export function DebtsLoansView() {
                         <td className="py-2.5 pr-3 text-right font-mono font-semibold tabular-nums">
                           {brl(row.installment)}
                         </td>
-                        <td className="py-2.5 pr-3 text-right font-mono text-xs text-slate-400 tabular-nums">
+                        <td className="py-2.5 pr-3 text-right font-mono text-xs text-slate-500 tabular-nums">
                           {brl(row.interest)}
                         </td>
-                        <td className="py-2.5 pr-3 text-right font-mono text-xs text-slate-300 tabular-nums">
+                        <td className="py-2.5 pr-3 text-right font-mono text-xs text-slate-700 tabular-nums">
                           {brl(row.principalAmortized)}
                         </td>
                         <td className="py-2.5 pr-3 text-right font-mono text-xs tabular-nums">
@@ -495,14 +495,14 @@ export function DebtsLoansView() {
                                 type="date"
                                 value={settleDate}
                                 onChange={(e) => setSettleDate(e.target.value)}
-                                className="w-28 rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 font-mono text-xs text-slate-100"
+                                className="w-28 rounded-lg border border-slate-300 bg-white px-2 py-1 font-mono text-xs text-slate-900"
                               />
                               <input
                                 type="text"
                                 inputMode="decimal"
                                 value={settleAmount}
                                 onChange={(e) => setSettleAmount(e.target.value)}
-                                className="w-24 rounded-lg border border-slate-700 bg-slate-950 px-2 py-1 text-right font-mono text-xs text-emerald-400"
+                                className="w-24 rounded-lg border border-slate-300 bg-white px-2 py-1 text-right font-mono text-xs text-emerald-700"
                               />
                               <button
                                 onClick={() => {
@@ -518,13 +518,13 @@ export function DebtsLoansView() {
                                   );
                                   setSettlingRow(null);
                                 }}
-                                className="rounded-lg bg-emerald-500 px-2.5 py-1 text-xs font-bold text-slate-950"
+                                className="rounded-lg bg-emerald-500 px-2.5 py-1 text-xs font-bold text-white"
                               >
                                 OK
                               </button>
                               <button
                                 onClick={() => setSettlingRow(null)}
-                                className="rounded-lg border border-slate-700 px-2 py-1 text-xs text-slate-400"
+                                className="rounded-lg border border-slate-300 px-2 py-1 text-xs text-slate-500"
                               >
                                 ✕
                               </button>
@@ -537,7 +537,7 @@ export function DebtsLoansView() {
                               <button
                                 onClick={() => undoDebtInstallment(activeEntry.debt.id, row.n)}
                                 title="Desfazer baixa"
-                                className="rounded p-1 text-slate-400 hover:bg-slate-800 hover:text-amber-300"
+                                className="rounded p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-700"
                               >
                                 <RotateCcw className="size-3.5" />
                               </button>
@@ -549,7 +549,7 @@ export function DebtsLoansView() {
                                 setSettleAmount(row.installment.toFixed(2));
                                 setSettleDate(todayIso());
                               }}
-                              className="inline-flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800/90 px-3 py-1 text-xs font-medium text-slate-200 transition hover:border-emerald-500/50 hover:bg-emerald-500/20 hover:text-emerald-300"
+                              className="inline-flex items-center gap-1 rounded-lg border border-slate-300 bg-slate-100 px-3 py-1 text-xs font-medium text-slate-800 transition hover:border-emerald-500/50 hover:bg-emerald-50 hover:text-emerald-800"
                             >
                               <Check className="size-3.5" />
                               Baixar Parcela
@@ -577,7 +577,7 @@ export function DebtsLoansView() {
       >
         <form onSubmit={handleCreateDebt} className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium text-slate-300">
+            <label className="mb-1 block text-xs font-medium text-slate-700">
               Identificação do Contrato
             </label>
             <input
@@ -585,18 +585,18 @@ export function DebtsLoansView() {
               placeholder="Ex.: Financiamento Imobiliário Itaú, Empréstimo Veículo..."
               value={debtForm.name}
               onChange={(e) => setDebtForm({ ...debtForm, name: e.target.value })}
-              className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               required
             />
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Modalidade</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Modalidade</label>
               <select
                 value={debtForm.kind}
                 onChange={(e) => setDebtForm({ ...debtForm, kind: e.target.value as DebtKind })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="financing">Financiamento</option>
                 <option value="loan">Empréstimo Pessoal</option>
@@ -605,7 +605,7 @@ export function DebtsLoansView() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">Sistema</label>
+              <label className="mb-1 block text-xs font-medium text-slate-700">Sistema</label>
               <select
                 value={debtForm.amortizationSystem}
                 onChange={(e) =>
@@ -614,7 +614,7 @@ export function DebtsLoansView() {
                     amortizationSystem: e.target.value as AmortizationSystem,
                   })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               >
                 <option value="price">Tabela Price</option>
                 <option value="sac">Tabela SAC</option>
@@ -622,7 +622,7 @@ export function DebtsLoansView() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Banco / Credor
               </label>
               <input
@@ -630,14 +630,14 @@ export function DebtsLoansView() {
                 placeholder="Ex: Itaú, Caixa, Safra"
                 value={debtForm.lender}
                 onChange={(e) => setDebtForm({ ...debtForm, lender: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-900"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-3 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor Financiado (R$)
               </label>
               <input
@@ -646,12 +646,12 @@ export function DebtsLoansView() {
                 placeholder="150000"
                 value={debtForm.principal}
                 onChange={(e) => setDebtForm({ ...debtForm, principal: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Taxa Juros (% a.m.)
               </label>
               <input
@@ -661,11 +661,11 @@ export function DebtsLoansView() {
                 onChange={(e) =>
                   setDebtForm({ ...debtForm, interestRateMonthly: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Nº Total de Parcelas
               </label>
               <input
@@ -676,7 +676,7 @@ export function DebtsLoansView() {
                 onChange={(e) =>
                   setDebtForm({ ...debtForm, installmentsTotal: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
                 required
               />
             </div>
@@ -684,7 +684,7 @@ export function DebtsLoansView() {
 
           {debtForm.amortizationSystem === "fixed" && (
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Valor Fixo da Parcela (R$)
               </label>
               <input
@@ -694,25 +694,25 @@ export function DebtsLoansView() {
                 onChange={(e) =>
                   setDebtForm({ ...debtForm, installmentAmount: e.target.value })
                 }
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           )}
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Data da 1ª Parcela
               </label>
               <input
                 type="date"
                 value={debtForm.startDate}
                 onChange={(e) => setDebtForm({ ...debtForm, startDate: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium text-slate-300">
+              <label className="mb-1 block text-xs font-medium text-slate-700">
                 Dia de Vencimento Mensal
               </label>
               <input
@@ -721,13 +721,13 @@ export function DebtsLoansView() {
                 max="28"
                 value={debtForm.dueDay}
                 onChange={(e) => setDebtForm({ ...debtForm, dueDay: e.target.value })}
-                className="w-full rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-slate-100"
+                className="w-full rounded-xl border border-slate-300 bg-white px-3 py-2 font-mono text-sm text-slate-900"
               />
             </div>
           </div>
 
           {formPmtPreview !== null && formPmtPreview > 0 && (
-            <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-amber-200">
+            <div className="rounded-xl border border-slate-200 bg-slate-100 p-3 text-xs text-slate-700">
               Prestação inicial estimada: <strong className="font-mono">{brl(formPmtPreview)}</strong>/mês
             </div>
           )}
@@ -736,13 +736,13 @@ export function DebtsLoansView() {
             <button
               type="button"
               onClick={() => setShowNewDebtModal(false)}
-              className="rounded-xl border border-slate-700 px-4 py-2 text-xs text-slate-300"
+              className="rounded-xl border border-slate-300 px-4 py-2 text-xs text-slate-700"
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded-xl bg-amber-500 px-5 py-2 text-xs font-semibold text-slate-950 hover:bg-amber-400"
+              className="rounded-xl bg-slate-900 text-white px-5 py-2 text-xs font-semibold text-white hover:bg-slate-800"
             >
               Salvar Contrato
             </button>

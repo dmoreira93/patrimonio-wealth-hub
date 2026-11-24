@@ -6,7 +6,6 @@ import {
   Landmark,
   LayoutDashboard,
   LineChart,
-  Receipt,
   RefreshCw,
   Settings,
   ShieldCheck,
@@ -53,7 +52,7 @@ const NAV_ITEMS: {
   {
     id: "investimentos",
     label: "Investimentos & B3",
-    badgeText: "GOOGLEFINANCE",
+    badgeText: "Planilha",
     icon: <TrendingUp className="size-4" />,
   },
   {
@@ -98,7 +97,6 @@ function MainWorkspace() {
   const { state, isSyncingSheet, lastSavedAt, syncWithGoogleSheet } = useWealth();
   const [activeTab, setActiveTab] = useState<NavSectionId>("dashboard");
 
-  // Cálculo rápido do Patrimônio Líquido para exibir na barra lateral/topo
   const netWorthSummary = useMemo(() => {
     const cash =
       state.accounts.reduce((s, a) => s + (Number(a.openingBalance) || 0), 0) +
@@ -130,38 +128,38 @@ function MainWorkspace() {
   }, [state]);
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-950 text-slate-100 lg:flex-row">
+    <div className="flex min-h-screen flex-col bg-[#F8FAFC] text-slate-900 lg:flex-row">
       {/* Sidebar Desktop */}
-      <aside className="flex w-full flex-col border-b border-slate-800/80 bg-slate-900/90 lg:w-72 lg: shrink-0 lg:border-b-0 lg:border-r">
+      <aside className="flex w-full flex-col border-b border-slate-200 bg-white lg:w-72 lg:shrink-0 lg:border-b-0 lg:border-r">
         {/* Brand Header */}
-        <div className="flex items-center justify-between border-b border-slate-800/80 px-5 py-4">
+        <div className="flex items-center justify-between border-b border-slate-200 px-5 py-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 text-slate-950 shadow-md">
-              <Sparkles className="size-5" />
+            <div className="flex size-9 items-center justify-center rounded-xl bg-slate-900 text-white shadow-xs">
+              <Sparkles className="size-4" />
             </div>
             <div>
-              <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-amber-400">
-                Private Wealth
+              <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                Controle Pessoal
               </span>
-              <h1 className="font-serif text-base font-bold leading-tight text-slate-100">
+              <h1 className="font-serif text-base font-bold leading-tight text-slate-900">
                 Patrimônio Hub
               </h1>
             </div>
           </div>
-          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 text-[10px] font-medium text-emerald-300">
-            <ShieldCheck className="size-3" /> Salvo {lastSavedAt}
+          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
+            <ShieldCheck className="size-3" /> {lastSavedAt}
           </span>
         </div>
 
         {/* Resumo Patrimonial Rápido */}
-        <div className="border-b border-slate-800/80 bg-slate-950/50 px-5 py-3.5">
-          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+        <div className="border-b border-slate-200 bg-slate-50/80 px-5 py-3.5">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">
             Patrimônio Líquido Consolidado
           </span>
-          <p className="mt-0.5 font-mono text-xl font-bold text-amber-400 tabular-nums">
+          <p className="mt-0.5 font-mono text-xl font-bold text-slate-900 tabular-nums">
             {brl(netWorthSummary.netWorth)}
           </p>
-          <div className="mt-1.5 flex items-center justify-between text-[11px] text-slate-400">
+          <div className="mt-1.5 flex items-center justify-between text-[11px] text-slate-500">
             <span>Ativos: {brl(netWorthSummary.totalInvestments)}</span>
             <span>Dívidas: {brl(netWorthSummary.debtPrincipal)}</span>
           </div>
@@ -177,8 +175,8 @@ function MainWorkspace() {
                 onClick={() => setActiveTab(item.id)}
                 className={`flex shrink-0 items-center justify-between gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-xs font-medium transition ${
                   isActive
-                    ? "bg-amber-500 text-slate-950 font-semibold shadow-sm"
-                    : "text-slate-300 hover:bg-slate-800/80 hover:text-slate-100"
+                    ? "bg-slate-900 text-white font-semibold shadow-xs"
+                    : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
                 }`}
               >
                 <span className="flex items-center gap-2.5">
@@ -187,10 +185,10 @@ function MainWorkspace() {
                 </span>
                 {item.badgeText && (
                   <span
-                    className={`hidden rounded-full px-2 py-0.5 text-[9px] font-bold uppercase lg:inline-block ${
+                    className={`hidden rounded-full px-2 py-0.5 text-[9px] font-semibold uppercase lg:inline-block ${
                       isActive
-                        ? "bg-slate-950/20 text-slate-950"
-                        : "bg-slate-800 text-amber-400"
+                        ? "bg-white/20 text-white"
+                        : "bg-slate-100 text-slate-600"
                     }`}
                   >
                     {item.badgeText}
@@ -202,25 +200,25 @@ function MainWorkspace() {
         </nav>
 
         {/* Rodapé da Sidebar com Status de Indexadores & Sync */}
-        <div className="hidden border-t border-slate-800/80 p-4 lg:block">
-          <div className="mb-3 grid grid-cols-3 gap-1.5 rounded-xl border border-slate-800 bg-slate-950/80 p-2.5 text-center font-mono text-[11px]">
+        <div className="hidden border-t border-slate-200 p-4 lg:block">
+          <div className="mb-3 grid grid-cols-3 gap-1.5 rounded-xl border border-slate-200 bg-slate-50 p-2.5 text-center font-mono text-[11px]">
             <div>
-              <span className="block text-[9px] text-slate-400">CDI</span>
-              <span className="font-bold text-amber-400">{state.settings.cdiAnnual}%</span>
+              <span className="block text-[9px] text-slate-500">CDI</span>
+              <span className="font-bold text-slate-800">{state.settings.cdiAnnual}%</span>
             </div>
             <div>
-              <span className="block text-[9px] text-slate-400">SELIC</span>
-              <span className="font-bold text-emerald-400">{state.settings.selicAnnual}%</span>
+              <span className="block text-[9px] text-slate-500">SELIC</span>
+              <span className="font-bold text-emerald-700">{state.settings.selicAnnual}%</span>
             </div>
             <div>
-              <span className="block text-[9px] text-slate-400">IPCA</span>
-              <span className="font-bold text-sky-400">{state.settings.ipcaAnnual}%</span>
+              <span className="block text-[9px] text-slate-500">IPCA</span>
+              <span className="font-bold text-sky-700">{state.settings.ipcaAnnual}%</span>
             </div>
           </div>
           <button
             onClick={syncWithGoogleSheet}
             disabled={isSyncingSheet}
-            className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-700 bg-slate-950 px-3 py-2 text-xs font-medium text-slate-200 transition hover:border-amber-400/50 hover:text-amber-300"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-xs font-medium text-slate-700 shadow-2xs transition hover:border-slate-300 hover:bg-slate-50"
           >
             <RefreshCw className={`size-3.5 ${isSyncingSheet ? "animate-spin" : ""}`} />
             Atualizar GOOGLEFINANCE
@@ -251,7 +249,7 @@ export default function App() {
   return (
     <WealthProvider>
       <MainWorkspace />
-      <Toaster richColors position="bottom-right" theme="dark" />
+      <Toaster richColors position="bottom-right" theme="light" />
     </WealthProvider>
   );
 }

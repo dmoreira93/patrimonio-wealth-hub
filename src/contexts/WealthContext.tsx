@@ -29,7 +29,7 @@ import {
   syncWealthStateToSupabase,
 } from "../lib/supabase-sync";
 
-const STORAGE_KEY = "patrimonio_wealth_hub_state_v1";
+const STORAGE_KEY = "patrimonio_wealth_hub_state_v2_clean";
 
 interface WealthContextValue {
   state: WealthState;
@@ -175,9 +175,9 @@ export function WealthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetToDemoSeed = () => {
-    const seed = createInitialSeedState();
-    setState(seed);
-    toast.success("Dados de demonstração recarregados.");
+    const clean = createInitialSeedState();
+    setState(clean);
+    toast.success("Todos os lançamentos foram zerados com sucesso!");
   };
 
   // Accounts & Categories
