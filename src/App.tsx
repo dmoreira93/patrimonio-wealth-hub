@@ -6,16 +6,19 @@ import {
   Landmark,
   LayoutDashboard,
   LineChart,
+  LogOut,
   RefreshCw,
   Settings,
   ShieldCheck,
   Sparkles,
   Target,
   TrendingUp,
+  UserCheck,
   Wallet,
 } from "lucide-react";
-import { Toaster } from "sonner";
+import { Toaster, toast } from "sonner";
 import { WealthProvider, useWealth } from "./contexts/WealthContext";
+import { LoginGate } from "./components/LoginGate";
 import { DashboardView } from "./components/DashboardView";
 import { CreditCardsView } from "./components/CreditCardsView";
 import { InvestmentsHubView } from "./components/InvestmentsHubView";
@@ -24,6 +27,11 @@ import { TransactionsAccountsView } from "./components/TransactionsAccountsView"
 import { BudgetCashflowView } from "./components/BudgetCashflowView";
 import { RentalsGoalsView } from "./components/RentalsGoalsView";
 import { SettingsVaultView } from "./components/SettingsVaultView";
+import {
+  clearActiveSession,
+  getActiveSessionUser,
+  type AuthenticatedUser,
+} from "./lib/auth";
 import {
   enrichVariableAssets,
   evaluateFixedIncomeAsset,
@@ -93,7 +101,13 @@ const NAV_ITEMS: {
   },
 ];
 
-function MainWorkspace() {
+function MainWorkspace({
+  user,
+  onLogout,
+}: {
+  user: AuthenticatedUser;
+  onLogout: () => void;
+}) {
   const { state, isSyncingSheet, lastSavedAt, syncWithGoogleSheet } = useWealth();
   const [activeTab, setActiveTab] = useState<NavSectionId>("dashboard");
 
@@ -149,6 +163,29 @@ function MainWorkspace() {
           <span className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-medium text-emerald-700">
             <ShieldCheck className="size-3" /> {lastSavedAt}
           </span>
+        </div>
+
+        {/* Usuário Autenticado */}
+        <div className="flex items-center justify-between border-b border-slate-200 bg-slate-50/60 px-5 py-2.5">
+          <div className="flex items-center gap-2 min-w-0">
+            <UserCheck className="size-3.5 shrink-0 text-emerald-700" />
+            <div className="truncate">
+              <p className="truncate text-xs font-semibold text-slate-800">
+                {user.displayName}
+              </p>
+              <p className="truncate font-mono text-[10px] text-slate-500">
+                @{user.username}
+              </p>
+            </div>
+          </div>
+          <button
+            onClick={onLogout}
+            title="Bloquear e sair da sessão"
+            className="inline-flex items-center gap-1 rounded-lg border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-700"
+          >
+            <LogOut className="size-3" />
+            Sair
+          </button>
         </div>
 
         {/* Resumo Patrimonial Rápido */}
@@ -246,10 +283,31 @@ function MainWorkspace() {
 }
 
 export default function App() {
+  const [authUser, setAuthUser] = useState<AuthenticatedUser | null>(() =>
+    getActiveSessionUser(),
+  );
+
+  const handleLogout = () => {
+    clearActiveSession();
+    setAuthUser(null);
+    toast.info("Sessão encerrada com segurança.");
+  };
+
   return (
-    <WealthProvider>
-      <MainWorkspace />
+    <>
+      {!authUser ? (
+        <LoginGate
+          onAuthenticated={(user) => {
+            setAuthUser(user);
+            toast.success(`Bem-vindo, ${user.displayName}!`);
+          }}
+        />
+      ) : (
+        <WealthProvider>
+          <MainWorkspace user={authUser} onLogout={handleLogout} />
+        </WealthProvider>
+      )}
       <Toaster richColors position="bottom-right" theme="light" />
-    </WealthProvider>
+    </>
   );
 }
